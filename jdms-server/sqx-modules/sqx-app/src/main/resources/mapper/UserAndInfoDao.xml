@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqx.app.base.user.dao.UserAndInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.sqx.app.base.user.entity.UserAndInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="infoName" column="info_name" jdbcType="VARCHAR"/>
+            <result property="infoPhone" column="info_phone" jdbcType="VARCHAR"/>
+            <result property="isDefault" column="is_default" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,info_name,info_phone,
+        is_default,user_id
+    </sql>
+</mapper>

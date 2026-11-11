@@ -1,0 +1,224 @@
+/* ============================================================
+ * 酒店民宿 · 柔和轻量化主题（全局覆写层）
+ * 目标：去生硬、去重阴影、移动端轻盈、住宿行业温润感
+ * Brand = #2C8EFE
+ * ============================================================ */
+
+:root,
+page {
+	/* 用户端 token 柔和化 */
+	--g-brand: #2C8EFE;
+	--g-brand-dark: #3B8FE8;
+	--g-brand-light: #EBF4FF;
+	--g-brand-soft: #F4F9FF;
+	--g-bg: #F6F8FB;
+	--g-surface: #FFFFFF;
+	--g-muted: #F3F6FA;
+	--g-border: #EEF1F6;
+	--g-text: #334155;
+	--g-text-2: #94A3B8;
+	--g-price: #FB7185;
+	--g-shadow: none;
+	--g-shadow-soft: 0 6rpx 24rpx rgba(44, 142, 254, 0.05);
+	--g-radius: 24rpx;
+	--g-radius-lg: 32rpx;
+
+	/* 商家端 token 柔和化 */
+	--h-brand: #2C8EFE;
+	--h-brand-dark: #3B8FE8;
+	--h-brand-light: #EBF4FF;
+	--h-bg: #F6F8FB;
+	--h-surface: #FFFFFF;
+	--h-border: #EEF1F6;
+	--h-text: #334155;
+	--h-text-2: #94A3B8;
+	--h-price: #FB7185;
+	--h-shadow: none;
+	--h-radius: 16rpx;
+}
+
+page {
+	background-color: var(--g-bg);
+	color: var(--g-text);
+	-webkit-font-smoothing: antialiased;
+}
+
+/* ---- 卡片：去阴影，轻边框 ---- */
+.guest-card,
+.guest-info-card,
+.guest-form-block,
+.guest-list-card,
+.guest-balance,
+.guest-wallet,
+.guest-stats,
+.guest-menu,
+.guest-order-card,
+.host-panel,
+.host-card,
+.host-card--lift,
+.host-statboard,
+.host-ordercard,
+.host-order-card,
+.host-metrics,
+.host-pair__card,
+.host-room,
+.host-scan,
+.host-cash-way {
+	box-shadow: none !important;
+	border-color: var(--g-border, #EEF1F6) !important;
+}
+
+.guest-card--flat {
+	border: 1rpx solid var(--g-border) !important;
+}
+
+/* ---- 按钮：柔和渐变，无硬阴影 ---- */
+.guest-btn,
+.guest-logout,
+.home-search__btn,
+.hd-foot__btn,
+.rl-room__book,
+.hd-room__book {
+	background: linear-gradient(135deg, #7EBAFF 0%, #2C8EFE 100%) !important;
+	box-shadow: none !important;
+	font-weight: 500 !important;
+}
+
+.guest-btn--ghost,
+.guest-btn--muted {
+	background: var(--g-brand-soft, #F4F9FF) !important;
+	color: var(--g-brand) !important;
+	border: 1rpx solid rgba(44, 142, 254, 0.25) !important;
+	box-shadow: none !important;
+}
+
+.host-btn {
+	background: linear-gradient(135deg, #7EBAFF 0%, #2C8EFE 100%) !important;
+	box-shadow: none !important;
+	font-weight: 500 !important;
+	border-radius: 999rpx !important;
+}
+
+.host-btn--ghost {
+	background: var(--h-brand-light) !important;
+	color: var(--h-brand) !important;
+	border: 1rpx solid rgba(44, 142, 254, 0.22) !important;
+}
+
+/* ---- 字重降级，避免生硬 ---- */
+.guest-hotel__name,
+.guest-section__title,
+.guest-profile__name,
+.guest-wallet__num,
+.guest-order-card__head .f34,
+.guest-sec-head__title,
+.guest-balance__amount,
+.guest-auth__title,
+.guest-login__welcome,
+.host-top__name,
+.host-block__title,
+.host-room__name,
+.host-order-card__name {
+	font-weight: 600 !important;
+}
+
+.guest-price,
+.guest-hotel__foot .guest-price,
+.host-price {
+	color: var(--g-price) !important;
+	font-weight: 600 !important;
+}
+
+/* ---- 标签：圆润胶囊 ---- */
+.guest-badge {
+	border-radius: 999rpx !important;
+	background: rgba(44, 142, 254, 0.88) !important;
+	font-weight: 500;
+}
+
+.guest-badge--soft {
+	background: var(--g-brand-light) !important;
+	color: var(--g-brand) !important;
+}
+
+.guest-tag,
+.hd-tag {
+	border-radius: 999rpx !important;
+}
+
+/* ---- 顶栏/吸顶：轻分割 ---- */
+.guest-sticky,
+.guest-fixed-foot,
+.hd-foot,
+.rl-filter,
+.host-sticky,
+.host-foot {
+	box-shadow: none !important;
+	border-color: var(--g-border) !important;
+}
+
+/* ---- 渐变头区：更温润 ---- */
+.guest-hero {
+	background: linear-gradient(165deg, #6BB3FE 0%, #2C8EFE 38%, #EBF4FF 100%) !important;
+}
+
+.host-top {
+	background: linear-gradient(180deg, #6BB3FE 0%, #2C8EFE 45%, var(--h-bg) 100%) !important;
+}
+
+/* ---- 登录/表单：柔和背景 ---- */
+.guest-login,
+.guest-auth {
+	background: linear-gradient(180deg, #EBF4FF 0%, var(--g-bg) 42%, var(--g-surface) 100%) !important;
+}
+
+.guest-login__logo,
+.guest-auth__logo {
+	box-shadow: var(--g-shadow-soft) !important;
+}
+
+.guest-auth__form,
+.guest-info-card {
+	box-shadow: none !important;
+	border: 1rpx solid var(--g-border) !important;
+}
+
+/* ---- 页面 scoped 样式常见硬编码兜底 ---- */
+[class*="guest-"],
+[class*="host-"],
+[class*="home-"],
+[class*="hd-"],
+[class*="rl-"] {
+	-webkit-font-smoothing: antialiased;
+}
+
+/* ---- 空态/列表间距 ---- */
+.guest-line,
+.guest-divider,
+.guest-form-divider,
+.guest-stay-bar,
+.guest-order-card,
+.guest-bill-item {
+	border-color: var(--g-border) !important;
+}
+
+.guest-stay-bar,
+.guest-form-block,
+.guest-pay-item {
+	background: var(--g-brand-soft, #F4F9FF) !important;
+	border-color: rgba(44, 142, 254, 0.08) !important;
+}
+
+/* ---- Tab 选中态 ---- */
+.guest-tab.is-on,
+.home-search__tab.is-on,
+.guest-chip--on,
+.hd-chip--on {
+	box-shadow: none !important;
+}
+
+/* ---- 空态/列表间距 ---- */
+.guest-empty,
+.host-empty {
+	color: var(--g-text-2) !important;
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqx.app.base.tbCoupon.dao.TbCouponUserDao">
+
+    <select id="getMyCouponList" resultType="com.sqx.app.base.tbCoupon.entity.TbCouponUser">
+        select t.*,
+        u.user_name as userName,
+        u.phone,
+        u.avatar
+        from tb_coupon_user t,tb_user u where t.user_id = u.user_id
+        <if test="couponUser.status!=null">
+            and t.status = #{couponUser.status}
+        </if>
+        <if test="couponUser.userId!=null">
+            and t.user_id = #{couponUser.userId}
+        </if>
+        <if test="couponUser.couponType!=null">
+            and t.coupon_type = #{couponUser.couponType}
+        </if>
+        <if test="couponUser.couponName!=null and couponUser.couponName!=''">
+            and t.coupon_name like concat("%",#{couponUser.couponName},"%")
+        </if>
+        <if test="couponUser.phone!=null and couponUser.phone!=''">
+            and u.phone = #{couponUser.phone}
+        </if>
+        <if test="couponUser.userName!=null and couponUser.userName!=''">
+            and u.user_name like concat("%",#{couponUser.userName},"%")
+        </if>
+        order by create_time desc
+    </select>
+    <select id="getOrderCouponList" resultType="com.sqx.app.base.tbCoupon.entity.TbCouponUser">
+        select * from tb_coupon_user t where t.status = 0 and t.user_id = #{userId}
+        <if test="orderType!=null">
+            and (t.coupon_type = #{orderType} or t.coupon_type =0)
+        </if>
+        <if test="payMoney!=null">
+            and t.min_money &lt;= #{payMoney}
+        </if>
+        order by money desc
+    </select>
+
+</mapper>

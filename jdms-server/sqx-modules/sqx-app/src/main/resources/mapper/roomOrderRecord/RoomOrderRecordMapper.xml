@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqx.app.base.roomOrderRecord.dao.RoomOrderRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqx.app.base.roomOrderRecord.entity.RoomOrderRecord">
+        <id column="record_id" property="recordId" />
+        <result column="order_id" property="orderId" />
+        <result column="shop_id" property="shopId" />
+        <result column="room_id" property="roomId" />
+        <result column="count" property="roomCount" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+    <select id="getRoomCountByDate" resultType="java.lang.Integer">
+        SELECT ifnull(sum(room_count),0) FROM `room_order_record` r
+        WHERE room_id = #{roomId}
+          AND #{searchDate} &gt;= r.`start_time`
+          AND #{searchDate} &lt; r.`end_time`
+    </select>
+    <select id="getOccupiedCountByRoomType" resultType="java.lang.Integer">
+        SELECT IFNULL(SUM(r.room_count), 0)
+        FROM room_order_record r
+                 INNER JOIN shops_room sr ON r.room_id = sr.room_id
+        WHERE sr.shop_id = #{shopId}
+          AND sr.room_type_id = #{roomTypeId}
+          AND #{searchDate} &gt;= r.start_time
+          AND #{searchDate} &lt; r.end_time
+    </select>
+    <select id="getOccupiedIdleCountByRoomType" resultType="java.lang.Integer">
+        SELECT IFNULL(SUM(r.room_count), 0)
+        FROM room_order_record r
+                 INNER JOIN shops_room sr ON r.room_id = sr.room_id
+        WHERE sr.shop_id = #{shopId}
+          AND sr.room_type_id = #{roomTypeId}
+          AND #{searchDate} &gt;= r.start_time
+          AND #{searchDate} &lt; r.end_time
+    </select>
+</mapper>

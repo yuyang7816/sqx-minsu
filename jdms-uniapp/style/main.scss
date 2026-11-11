@@ -1,0 +1,164 @@
+// 容器
+.container{
+	background-color: #FFFFFF;
+}
+.container_cont{
+	width: calc(100% - 55rpx);
+	margin: auto;
+}
+.container_cont_{
+	width: calc(100% - 40rpx);
+	margin: auto;
+}
+// 文字
+.f68{
+	font-size: 68rpx;
+}
+.f64{
+	font-size: 64rpx;
+}
+.f60{
+	font-size: 60rpx;
+}
+.f56{
+	font-size: 56rpx;
+}
+.f50{
+	font-size: 50rpx;
+}
+.f48{
+	font-size: 48rpx;
+}
+.f44{
+	font-size: 44rpx;
+}
+.f42{
+	font-size: 42rpx;
+}
+.f40{
+	font-size: 40rpx;
+}
+.f38{
+	font-size: 38rpx;
+}
+.f36{
+	font-size: 36rpx;
+}
+.f34{
+	font-size: 34rpx;
+}
+.f32{
+	font-size: 32rpx;
+}
+.f30{
+	font-size: 30rpx;
+}
+.f28{
+	font-size: 28rpx;
+}
+.f26{
+	font-size: 26rpx;
+}
+.f24{
+	font-size: 24rpx;
+}
+.f22{
+	font-size: 22rpx;
+}
+.f20{
+	font-size: 20rpx;
+}
+
+// 颜色
+.c24{
+	color: #242424;
+}
+.c99{
+	color: #999999;
+}
+.c993{
+	color: #333333;
+}
+.c130{
+	color: #FF130A;
+}
+.ccc{
+	color: #CCCCCC;
+}
+.cf928{
+	color: #F9284A;
+}
+.c66{
+	color: #666666;
+}
+.cFF{
+	color: #FFFFFF;
+}
+.cF6{
+	color: #F6D7B7;
+}
+.c16{
+	color: #161616;
+}
+.c00{
+	color: #2C8EFE;
+}
+.c9A{
+	color: #9AA5B8;
+}
+.CF33{
+	color: #FF3333;
+}
+.cF8{
+	color: #F88712;
+}
+.c33{
+	color: #333333;
+}
+.cff0{
+	color: #FF0000;
+}
+.mainColor{
+	color: #2C8EFE;
+}
+// 文字
+.text-bold{
+	font-weight: bold;
+}
+.text-heavy{
+	font-weight: 500;
+}
+.text-center{
+	text-align: center;
+}
+.text-left{
+	text-align: left;
+}
+.text-right{
+	text-align: right;
+}
+.text-italic{
+	font-style: italic;
+}
+.text-cut {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.text-line{
+	text-decoration: line-through;
+}
+.text-cut-2 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+.text-cut-3 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+}

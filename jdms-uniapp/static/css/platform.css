@@ -1,0 +1,4133 @@
+/* ============================================================
+ * 用户端 · 消费平台 plat-* Design Tokens
+ * Brand = #2C8EFE
+ * ============================================================ */
+:root,
+page {
+	--plat-brand: #2c8efe;
+	--plat-brand-deep: #0173f6;
+	--plat-brand-mid: #3591fa;
+	--plat-brand-lite: #69affe;
+	--plat-page-bg: #F4F6FA;
+	--plat-soft-bg: #eef6ff;
+	--plat-line: #EEF1F6;
+	--plat-text: #1A2433;
+	--plat-text-sub: #64748B;
+	--plat-price: #FF5B7A;
+	--plat-shadow: rgba(44, 142, 254, 0.06);
+	--plat-shadow-lg: rgba(44, 142, 254, 0.12);
+	--plat-radius-card: 24rpx;
+	--plat-radius-btn: 999rpx;
+}
+
+/* ---- 页面骨架 ---- */
+.plat-page {
+	min-height: 100vh;
+	background-color: var(--plat-page-bg);
+}
+
+.plat-head {
+	position: relative;
+	background: linear-gradient(180deg,
+		#0173f6 0%,
+		#2c8efe 40%,
+		#69affe 78%,
+		#EEF0F6 92%,
+		#F4F6FA 100%);
+	padding-bottom: 40rpx;
+}
+
+.plat-head--immersive {
+	padding-top: var(--status-bar-height, 0);
+}
+
+.plat-body {
+	position: relative;
+	z-index: 2;
+}
+
+.plat-body--pad {
+	padding: 0 30rpx;
+}
+
+.plat-body--overlap {
+	margin-top: -60rpx;
+}
+
+/* ---- 卡片 ---- */
+.plat-card {
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	box-shadow: 0 8rpx 32rpx var(--plat-shadow);
+	overflow: hidden;
+}
+
+.plat-card--flat {
+	box-shadow: none;
+	border: 1rpx solid var(--plat-line);
+}
+
+.plat-sec {
+	margin: 20rpx 30rpx;
+}
+
+.plat-sec-title {
+	font-size: 32rpx;
+	font-weight: 700;
+	color: var(--plat-text);
+	padding: 0 30rpx 20rpx;
+}
+
+/* ---- 按钮 ---- */
+.plat-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, var(--plat-brand-lite) 0%, var(--plat-brand) 100%);
+	color: #FFFFFF;
+	font-size: 30rpx;
+	font-weight: 600;
+	border-radius: var(--plat-radius-btn);
+	padding: 26rpx 0;
+	box-shadow: 0 8rpx 24rpx var(--plat-shadow-lg);
+}
+
+.plat-btn--sm {
+	font-size: 24rpx;
+	padding: 16rpx 28rpx;
+	border-radius: 16rpx;
+	box-shadow: none;
+}
+
+.plat-btn--ghost {
+	background: transparent;
+	color: var(--plat-brand);
+	border: 1rpx solid var(--plat-brand);
+	box-shadow: none;
+}
+
+/* ---- 分段 Tab ---- */
+.plat-seg {
+	display: flex;
+	background: var(--plat-soft-bg);
+	border-radius: var(--plat-radius-card);
+	padding: 6rpx;
+}
+
+.plat-seg-item {
+	flex: 1;
+	text-align: center;
+	font-size: 28rpx;
+	color: var(--plat-text-sub);
+	padding: 20rpx 0;
+	border-radius: 20rpx;
+	transition: all 0.2s;
+}
+
+.plat-seg-item--active {
+	background: #FFFFFF;
+	color: var(--plat-brand);
+	font-weight: 600;
+	box-shadow: 0 4rpx 16rpx var(--plat-shadow);
+}
+
+/* ---- 封面流 ---- */
+.plat-cover {
+	display: flex;
+	padding: 24rpx 30rpx;
+}
+
+.plat-cover-img {
+	width: 210rpx;
+	height: 240rpx;
+	border-radius: var(--plat-radius-card);
+	margin-right: 20rpx;
+	flex-shrink: 0;
+}
+
+.plat-cover-body {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.plat-cover-title {
+	font-size: 32rpx;
+	font-weight: 700;
+	color: var(--plat-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.plat-cover-sub {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-cover-price {
+	color: var(--plat-price);
+	font-weight: 700;
+}
+
+.plat-cover-price .unit {
+	font-size: 24rpx;
+}
+
+.plat-cover-price .num {
+	font-size: 38rpx;
+}
+
+/* ---- 标签 ---- */
+.plat-tag {
+	display: inline-block;
+	background: var(--plat-brand);
+	color: #FFFFFF;
+	font-size: 22rpx;
+	padding: 6rpx 12rpx;
+	border-radius: 20rpx 19rpx 19rpx 0;
+}
+
+.plat-tag--soft {
+	background: var(--plat-soft-bg);
+	color: var(--plat-text-sub);
+	border-radius: 19rpx;
+}
+
+/* ---- 统计 / 菜单 ---- */
+.plat-stat {
+	display: flex;
+	justify-content: space-around;
+	padding: 30rpx 0;
+}
+
+.plat-stat-item {
+	text-align: center;
+}
+
+.plat-stat-num {
+	font-size: 38rpx;
+	font-weight: 700;
+	color: var(--plat-text);
+}
+
+.plat-stat-label {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-menu {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10rpx 0 20rpx;
+}
+
+.plat-menu-item {
+	width: 25%;
+	text-align: center;
+	padding: 20rpx 0;
+}
+
+.plat-menu-icon {
+	width: 60rpx;
+	height: 60rpx;
+}
+
+.plat-menu-label {
+	font-size: 24rpx;
+	color: var(--plat-text);
+	margin-top: 8rpx;
+}
+
+/* ---- 底栏 ---- */
+.plat-footbar {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #FFFFFF;
+	padding: 20rpx 30rpx;
+	padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+	box-shadow: 0 -4rpx 20rpx var(--plat-shadow);
+	z-index: 99;
+}
+
+/* ---- 空态 ---- */
+.plat-empty {
+	text-align: center;
+	padding: 80rpx 0;
+	color: var(--plat-text-sub);
+	font-size: 28rpx;
+}
+
+/* ---- 分割线 ---- */
+.plat-line {
+	border-top: 1rpx solid var(--plat-line);
+	margin: 24rpx 30rpx;
+}
+
+/* ---- 登录 / 认证 ---- */
+.plat-auth {
+	min-height: 100vh;
+	background: linear-gradient(180deg,
+		var(--plat-brand-deep) 0%,
+		var(--plat-brand) 28%,
+		var(--plat-soft-bg) 55%,
+		var(--plat-page-bg) 100%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 60rpx;
+	padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.plat-auth__logo {
+	width: 150rpx;
+	height: 150rpx;
+	border-radius: 32rpx;
+	margin-top: 200rpx;
+	box-shadow: 0 16rpx 48rpx var(--plat-shadow-lg);
+}
+
+.plat-auth__title {
+	margin-top: 36rpx;
+	font-size: 34rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-auth__btn {
+	width: 100%;
+	height: 96rpx;
+	line-height: 96rpx;
+	border-radius: 999rpx;
+	font-size: 32rpx;
+	font-weight: 600;
+	background: linear-gradient(135deg, var(--plat-brand-lite) 0%, var(--plat-brand) 100%);
+	color: #FFFFFF;
+	box-shadow: 0 12rpx 32rpx var(--plat-shadow-lg);
+	border: none;
+	margin-top: 80rpx;
+}
+
+.plat-auth__btn--top {
+	margin-top: 300rpx;
+}
+
+.plat-auth__agree {
+	width: 100%;
+	margin-top: 40rpx;
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.plat-auth__agree text {
+	color: var(--plat-brand);
+}
+
+button.plat-auth__btn::after {
+	border: none;
+}
+
+/* ---- 认证表单 T6 · loginphone / register / forgetPwd ---- */
+.plat-auth-form-page .plat-form-head {
+	padding-top: 72rpx;
+	text-align: center;
+}
+
+.plat-auth-form__logo {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 28rpx;
+	box-shadow: 0 12rpx 36rpx var(--plat-shadow-lg);
+	margin: 0 auto 24rpx;
+	display: block;
+}
+
+.plat-form-switch {
+	text-align: center;
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	padding: 32rpx 30rpx;
+}
+
+.plat-form-link {
+	color: var(--plat-brand);
+	font-size: 26rpx;
+	flex-shrink: 0;
+	margin-left: 8rpx;
+}
+
+.plat-form-code {
+	color: var(--plat-brand);
+	font-size: 26rpx;
+	flex-shrink: 0;
+	margin-left: 16rpx;
+	white-space: nowrap;
+}
+
+.plat-form-code.is-disabled {
+	color: var(--plat-text-sub);
+}
+
+.plat-form-field__input-wrap {
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-auth-form-page .plat-form-field__input-wrap .u-input {
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-form-field__input-ph {
+	color: var(--plat-text-sub);
+	font-size: 28rpx;
+}
+
+.plat-auth-form-page .plat-form-field :deep(.u-input__content) {
+	padding: 0 !important;
+}
+
+.plat-auth-form-page .plat-form-field :deep(.u-input__content__field-wrapper__field) {
+	font-size: 28rpx;
+	color: var(--plat-text);
+	text-align: right;
+}
+
+/* ---- 资产头 ---- */
+.plat-wallet-head {
+	background: linear-gradient(135deg, var(--plat-brand-lite) 0%, var(--plat-brand) 100%);
+	color: #FFFFFF;
+	margin: 30rpx;
+	border-radius: var(--plat-radius-card);
+	padding: 40rpx 30rpx;
+	text-align: center;
+	box-shadow: 0 12rpx 40rpx var(--plat-shadow-lg);
+}
+
+.plat-wallet-head__label {
+	font-size: 28rpx;
+	opacity: 0.9;
+}
+
+.plat-wallet-head__num {
+	font-size: 68rpx;
+	font-weight: 700;
+	margin-top: 12rpx;
+}
+
+.plat-wallet-head__sub {
+	font-size: 26rpx;
+	opacity: 0.85;
+	margin-top: 8rpx;
+}
+
+.plat-wallet-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 30rpx;
+}
+
+.plat-wallet-bar__num {
+	font-size: 48rpx;
+	font-weight: 700;
+	color: var(--plat-text);
+	margin-top: 8rpx;
+}
+
+/* ---- 表单 ---- */
+.plat-form-card {
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	margin: 20rpx 30rpx;
+	padding: 30rpx;
+	box-shadow: 0 4rpx 24rpx var(--plat-shadow);
+}
+
+.plat-form-card__title {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	margin-bottom: 16rpx;
+}
+
+.plat-form-card__value {
+	font-size: 36rpx;
+	font-weight: 700;
+	color: var(--plat-brand);
+}
+
+.plat-form-field {
+	font-size: 28rpx;
+	color: var(--plat-text);
+	margin-top: 16rpx;
+}
+
+.plat-form-divider {
+	border-bottom: 1rpx solid var(--plat-line);
+	padding-bottom: 24rpx;
+	margin-bottom: 24rpx;
+}
+
+.plat-pay-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 24rpx 30rpx;
+	border-radius: 16rpx;
+	border: 2rpx solid var(--plat-line);
+	background: var(--plat-page-bg);
+	margin-bottom: 16rpx;
+}
+
+.plat-pay-item--active {
+	border-color: var(--plat-brand);
+	background: var(--plat-soft-bg);
+}
+
+.plat-money-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20rpx;
+}
+
+.plat-money-item {
+	width: calc((100% - 40rpx) / 3);
+	height: 140rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 16rpx;
+	border: 2rpx solid var(--plat-line);
+	background: var(--plat-page-bg);
+	font-size: 40rpx;
+	font-weight: 700;
+	color: var(--plat-text);
+}
+
+.plat-money-item--active {
+	border-color: var(--plat-brand);
+	background: var(--plat-soft-bg);
+	color: var(--plat-brand);
+}
+
+/* ---- 设置 / 服务列表 ---- */
+.plat-setting {
+	padding: 20rpx 30rpx;
+}
+
+.plat-setting-card {
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	padding: 0 30rpx;
+	box-shadow: 0 4rpx 24rpx var(--plat-shadow);
+}
+
+.plat-setting-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 36rpx 0;
+	border-bottom: 1rpx solid var(--plat-line);
+	font-size: 28rpx;
+	color: var(--plat-text);
+}
+
+.plat-setting-item:last-child {
+	border-bottom: none;
+}
+
+.plat-logout {
+	margin: 60rpx 30rpx;
+	height: 88rpx;
+	line-height: 88rpx;
+	text-align: center;
+	border-radius: 999rpx;
+	background: linear-gradient(135deg, var(--plat-brand-lite) 0%, var(--plat-brand) 100%);
+	color: #FFFFFF;
+	font-size: 30rpx;
+	font-weight: 600;
+	box-shadow: 0 8rpx 24rpx var(--plat-shadow-lg);
+}
+
+/* ---- 反馈 ---- */
+.plat-feedback {
+	padding: 30rpx;
+}
+
+.plat-feedback__title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	margin-bottom: 16rpx;
+}
+
+.plat-feedback__title text:last-child {
+	color: var(--plat-brand);
+	font-weight: 400;
+	font-size: 26rpx;
+}
+
+.plat-feedback__area {
+	width: 100%;
+	min-height: 240rpx;
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	padding: 24rpx;
+	font-size: 28rpx;
+	color: var(--plat-text);
+	box-shadow: 0 4rpx 20rpx var(--plat-shadow);
+}
+
+.plat-feedback__input {
+	width: 100%;
+	height: 88rpx;
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	padding: 0 24rpx;
+	font-size: 28rpx;
+	box-shadow: 0 4rpx 20rpx var(--plat-shadow);
+}
+
+/* ---- 入住人 / 信息卡 ---- */
+.plat-info-card {
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	padding: 30rpx;
+	margin: 20rpx 30rpx;
+	box-shadow: 0 4rpx 20rpx var(--plat-shadow);
+}
+
+.plat-info-card__divider {
+	border-bottom: 1rpx solid var(--plat-line);
+	padding-bottom: 24rpx;
+	margin-bottom: 24rpx;
+}
+
+/* ---- 通用底部固定栏 ---- */
+.plat-fixed-foot {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #FFFFFF;
+	padding: 20rpx 30rpx;
+	padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+	box-shadow: 0 -4rpx 20rpx var(--plat-shadow);
+	z-index: 99;
+}
+
+.plat-sec-head {
+	display: flex;
+	align-items: center;
+	padding: 0 30rpx 20rpx;
+}
+
+.plat-sec-head__bar {
+	width: 6rpx;
+	height: 32rpx;
+	background: var(--plat-brand);
+	border-radius: 3rpx;
+	margin-right: 12rpx;
+}
+
+.plat-sec-head__title {
+	font-size: 32rpx;
+	font-weight: 700;
+	color: var(--plat-text);
+}
+
+.plat-bill-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 24rpx 30rpx;
+	border-bottom: 1rpx solid var(--plat-line);
+}
+
+.plat-bill-item:last-child {
+	border-bottom: none;
+}
+
+.plat-link-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 30rpx;
+	font-size: 28rpx;
+	color: var(--plat-text-sub);
+}
+
+/* ---- uview 兜底覆盖 ---- */
+.u-tabs__wrapper__nav__line {
+	background-color: var(--plat-brand) !important;
+}
+
+/* ---- 列表筛选顶栏（T4 封面流列表） ---- */
+.plat-filter-bar {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background: var(--plat-page-bg);
+	padding: 24rpx 30rpx 16rpx;
+}
+
+.plat-list-feed {
+	padding: 0 30rpx 30rpx;
+}
+
+/* ---- 封面流卡片 · 上图下文 + 粉价 ---- */
+.plat-cover-card {
+	margin-bottom: 24rpx;
+	overflow: hidden;
+}
+
+.plat-cover-card__img {
+	width: 100%;
+	height: 320rpx;
+	display: block;
+}
+
+.plat-cover-card__body {
+	padding: 24rpx;
+}
+
+.plat-cover-card__foot {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 16rpx;
+}
+
+.plat-cover-tags {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8rpx;
+	margin-top: 12rpx;
+}
+
+.plat-cover-price .suffix {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	font-weight: 400;
+	margin-left: 4rpx;
+}
+
+/* ---- 表单页 T6 · 分区白卡 + 底栏主按钮 ---- */
+.plat-form-page {
+	padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.plat-form-head {
+	padding: 40rpx 30rpx 24rpx;
+}
+
+.plat-form-head__title {
+	font-size: 40rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-form-head__hint {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-top: 12rpx;
+}
+
+.plat-form-section {
+	padding: 0;
+}
+
+.plat-form-field {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 32rpx 0;
+	border-bottom: 1rpx solid var(--plat-line);
+	font-size: 28rpx;
+	color: var(--plat-text);
+}
+
+.plat-form-field:last-child {
+	border-bottom: none;
+}
+
+.plat-form-field__label {
+	flex-shrink: 0;
+	color: var(--plat-text);
+}
+
+.plat-form-field__value {
+	flex: 1;
+	text-align: right;
+}
+
+.plat-form-field__input {
+	text-align: right;
+	font-size: 28rpx;
+	color: var(--plat-text);
+}
+
+/* ---- 城市选择 T4 ---- */
+.plat-city-page {
+	box-sizing: border-box;
+	background-color: var(--plat-page-bg);
+}
+
+.plat-city-page__header {
+	flex-shrink: 0;
+}
+
+.plat-city-filter {
+	padding-top: 16rpx;
+	padding-bottom: 8rpx;
+}
+
+.plat-city-search {
+	padding: 20rpx 24rpx;
+}
+
+.plat-city-search__input {
+	width: 100%;
+	font-size: 28rpx;
+	color: var(--plat-text);
+	height: 64rpx;
+	line-height: 64rpx;
+}
+
+.plat-city-search__placeholder {
+	color: var(--plat-text-sub);
+	font-size: 28rpx;
+}
+
+.plat-city-hot-card {
+	margin: -20rpx 30rpx 0;
+	padding-bottom: 8rpx;
+}
+
+.plat-city-hot-card__head {
+	padding: 24rpx 30rpx 12rpx;
+}
+
+.plat-city-hot-card__grid {
+	padding-top: 0;
+	padding-bottom: 16rpx;
+}
+
+.plat-city-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16rpx;
+	padding: 0 30rpx 30rpx;
+}
+
+.plat-city-item {
+	width: calc(25% - 12rpx);
+	height: 72rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #FFFFFF;
+	border-radius: 16rpx;
+	font-size: 26rpx;
+	color: var(--plat-text);
+	border: 1rpx solid var(--plat-line);
+	box-shadow: 0 4rpx 16rpx var(--plat-shadow);
+}
+
+.plat-city-current {
+	margin: -20rpx 30rpx 24rpx;
+	padding: 28rpx 30rpx;
+}
+
+.plat-city-current__label {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-city-current__name {
+	font-size: 36rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	margin-top: 8rpx;
+}
+
+/* ---- webView 容器 ---- */
+.plat-webview-page {
+	height: 100vh;
+	background: var(--plat-page-bg);
+}
+
+/* ---- 城市列表组件品牌化覆盖 ---- */
+.uni-city-list__menu-text--active {
+	color: #FFFFFF !important;
+	background-color: var(--plat-brand) !important;
+}
+
+.uni-city-list__menu--active {
+	background-color: var(--plat-soft-bg) !important;
+}
+
+.uni-city-list__menu-text {
+	color: var(--plat-text-sub) !important;
+}
+
+.uni-city-list__title-wrapper {
+	background-color: var(--plat-soft-bg) !important;
+}
+
+.uni-city-list__title {
+	color: var(--plat-text) !important;
+	font-size: 28rpx !important;
+	font-weight: 600 !important;
+}
+
+.uni-city-list__list {
+	background-color: #FFFFFF !important;
+	border-top-color: var(--plat-line) !important;
+}
+
+.uni-city-list__item-content {
+	color: var(--plat-text) !important;
+	font-size: 28rpx !important;
+}
+
+.uni-city-list__item-border {
+	border-bottom-color: var(--plat-line) !important;
+}
+
+.uni-city-list__item--hover {
+	background-color: var(--plat-soft-bg) !important;
+}
+
+.uni-city-list__alert {
+	background-color: var(--plat-brand) !important;
+	color: #FFFFFF !important;
+}
+
+/* ---- 优惠券 T4/T5 ---- */
+.plat-coupon-page {
+	padding-bottom: 30rpx;
+}
+
+.plat-coupon-hero {
+	padding: 32rpx 30rpx 80rpx;
+}
+
+.plat-coupon-hero__text {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+
+.plat-coupon-section {
+	margin-top: -48rpx;
+	position: relative;
+	z-index: 5;
+	padding: 0 30rpx;
+}
+
+.plat-coupon-my {
+	padding: 28rpx;
+}
+
+.plat-coupon-my__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-coupon-my__title {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-coupon-my__more {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-right: 10rpx;
+}
+
+.plat-coupon-scroll {
+	white-space: nowrap;
+	width: 100%;
+}
+
+.plat-coupon-scroll--mine {
+	height: 150rpx;
+}
+
+.plat-coupon-scroll--shop {
+	height: 280rpx;
+	margin-top: 16rpx;
+}
+
+.plat-coupon-card {
+	width: 560rpx;
+	height: 140rpx;
+	margin-right: 20rpx;
+	position: relative;
+	display: inline-block;
+}
+
+.plat-coupon-card__bg {
+	width: 560rpx;
+	height: 140rpx;
+}
+
+.plat-coupon-card__body {
+	display: flex;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 560rpx;
+	height: 140rpx;
+	align-items: center;
+	z-index: 2;
+}
+
+.plat-coupon-card__money {
+	font-size: 24rpx;
+	font-weight: 600;
+	color: #84592B;
+	width: 140rpx;
+	text-align: center;
+}
+
+.plat-coupon-card__money text {
+	font-size: 48rpx;
+}
+
+.plat-coupon-card__info {
+	margin-left: 40rpx;
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-coupon-card__name {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-width: 320rpx;
+}
+
+.plat-coupon-card__time {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 16rpx;
+}
+
+.plat-coupon-shop__item {
+	margin-right: 20rpx;
+	width: 220rpx;
+	height: 260rpx;
+	position: relative;
+	display: inline-block;
+}
+
+.plat-coupon-shop__bg {
+	width: 220rpx;
+	height: 260rpx;
+}
+
+.plat-coupon-shop__content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 220rpx;
+	height: 260rpx;
+	z-index: 2;
+	text-align: center;
+	padding: 20rpx 0;
+}
+
+.plat-coupon-shop__name {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: 0 20rpx;
+}
+
+.plat-coupon-shop__money {
+	font-size: 24rpx;
+	font-weight: 600;
+	color: var(--plat-price);
+	margin: 8rpx 0;
+}
+
+.plat-coupon-shop__money text {
+	font-size: 40rpx;
+}
+
+.plat-coupon-shop__rule {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-coupon-shop__btn {
+	margin: 30rpx auto 0;
+	width: 130rpx;
+}
+
+.plat-coupon-empty {
+	display: flex;
+	justify-content: center;
+	padding: 40rpx 0;
+}
+
+.plat-coupon-empty__img {
+	width: 251rpx;
+	height: 178rpx;
+}
+
+.plat-coupon-tabs {
+	margin: 20rpx 30rpx;
+}
+
+.plat-coupon-item {
+	margin: 20rpx 30rpx 0;
+	padding: 28rpx;
+}
+
+.plat-coupon-item__main {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.plat-coupon-item__name {
+	color: var(--plat-text);
+	font-size: 30rpx;
+	font-weight: 600;
+}
+
+.plat-coupon-item__meta,
+.plat-coupon-item__rule {
+	color: var(--plat-text-sub);
+	font-size: 24rpx;
+	margin-top: 10rpx;
+}
+
+.plat-coupon-item__price {
+	color: var(--plat-price);
+	font-size: 30rpx;
+	flex-shrink: 0;
+}
+
+.plat-coupon-item__price text {
+	font-size: 48rpx;
+	font-weight: 600;
+}
+
+.plat-coupon-item__divider {
+	width: 100%;
+	border-top: 1rpx dashed var(--plat-line);
+	margin: 30rpx 0;
+}
+
+/* ---- 入住人信息卡 T6 ---- */
+.plat-info-page {
+	padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.plat-info-card__name {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-info-card__phone {
+	font-size: 28rpx;
+	color: var(--plat-text-sub);
+	margin-top: 12rpx;
+}
+
+.plat-info-card__foot {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 24rpx;
+	padding-top: 24rpx;
+	border-top: 1rpx solid var(--plat-line);
+}
+
+/* ---- 商家入驻表单 T6 ---- */
+.plat-upload-box {
+	background: var(--plat-soft-bg);
+	width: calc((100% - 30rpx) / 4);
+	height: 160rpx;
+	border-radius: 12rpx;
+	margin-right: 10rpx;
+	margin-bottom: 10rpx;
+	text-align: center;
+	border: 1rpx dashed var(--plat-line);
+	position: relative;
+	overflow: hidden;
+}
+
+.plat-upload-box__icon {
+	width: 50rpx;
+	height: 50rpx;
+	margin-top: 35rpx;
+}
+
+.plat-upload-box__text {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-upload-box__preview {
+	width: 100%;
+	height: 100%;
+	border-radius: 12rpx;
+}
+
+.plat-detail-spacer {
+	height: 160rpx;
+}
+
+/* ---- 封面流横排变体（左图右文） ---- */
+.plat-cover-card--row {
+	display: flex;
+	padding: 24rpx;
+}
+
+.plat-cover-card--row .plat-cover-card__img {
+	width: 210rpx;
+	height: 240rpx;
+	border-radius: var(--plat-radius-card);
+	margin-right: 20rpx;
+	flex-shrink: 0;
+}
+
+.plat-cover-card--row .plat-cover-card__body {
+	padding: 0;
+	flex: 1;
+	min-width: 0;
+}
+
+/* ---- 详情页 T7 · 摘要卡→分组→底栏双钮 ---- */
+.plat-detail-page {
+	min-height: 100vh;
+	background: var(--plat-page-bg);
+	padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.plat-detail-banner {
+	width: 100%;
+}
+
+.plat-detail-summary {
+	position: relative;
+	z-index: 2;
+	margin: -32rpx 30rpx 0;
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	padding: 32rpx 28rpx 24rpx;
+	box-shadow: 0 8rpx 32rpx var(--plat-shadow);
+}
+
+.plat-detail-summary__name {
+	font-size: 38rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	line-height: 1.35;
+}
+
+.plat-detail-summary__tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12rpx;
+	margin-top: 16rpx;
+}
+
+.plat-detail-summary__addr {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 20rpx;
+	padding-top: 20rpx;
+	border-top: 1rpx solid var(--plat-line);
+}
+
+.plat-detail-summary__addr-text {
+	flex: 1;
+	min-width: 0;
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-right: 16rpx;
+}
+
+.plat-detail-summary__map {
+	flex-shrink: 0;
+	font-size: 26rpx;
+	color: var(--plat-brand);
+	font-weight: 500;
+}
+
+.plat-detail-stay {
+	margin: 20rpx 30rpx;
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	box-shadow: 0 4rpx 24rpx var(--plat-shadow);
+	overflow: hidden;
+}
+
+.plat-detail-stay__bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 24rpx 28rpx;
+	border-bottom: 1rpx solid var(--plat-line);
+}
+
+.plat-detail-stay__dates {
+	display: flex;
+	align-items: baseline;
+}
+
+.plat-detail-stay__val {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-detail-stay__unit {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin: 0 8rpx 0 4rpx;
+}
+
+.plat-detail-stay__dash {
+	width: 28rpx;
+	height: 2rpx;
+	background: var(--plat-line);
+	margin: 0 12rpx;
+	align-self: center;
+}
+
+.plat-detail-stay__nights {
+	font-size: 26rpx;
+	color: var(--plat-brand);
+	font-weight: 500;
+}
+
+.plat-detail-stay__scroll {
+	white-space: nowrap;
+	width: 100%;
+}
+
+.plat-detail-stay__chips {
+	display: inline-flex;
+	padding: 16rpx 28rpx 20rpx;
+	gap: 16rpx;
+}
+
+.plat-detail-chip {
+	display: inline-block;
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	background: var(--plat-page-bg);
+	padding: 12rpx 24rpx;
+	border-radius: 999rpx;
+	border: 1rpx solid var(--plat-line);
+	flex-shrink: 0;
+}
+
+.plat-detail-chip--on {
+	color: var(--plat-brand);
+	border-color: var(--plat-brand);
+	background: var(--plat-soft-bg);
+}
+
+.plat-detail-section {
+	padding: 0 30rpx;
+	margin-top: 20rpx;
+}
+
+.plat-detail-section__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 20rpx;
+}
+
+.plat-detail-section__title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-detail-section__more {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-detail-room {
+	margin-bottom: 24rpx;
+}
+
+.plat-detail-empty {
+	text-align: center;
+	padding: 60rpx 0 40rpx;
+}
+
+.plat-detail-empty__img {
+	width: 280rpx;
+	height: 220rpx;
+}
+
+.plat-detail-empty__text {
+	font-size: 28rpx;
+	color: var(--plat-text-sub);
+	margin-top: 16rpx;
+}
+
+.plat-detail-reviews {
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	padding: 24rpx 28rpx;
+	box-shadow: 0 4rpx 24rpx var(--plat-shadow);
+}
+
+.plat-detail-foot {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16rpx 30rpx;
+	padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+	background: #FFFFFF;
+	border-top: 1rpx solid var(--plat-line);
+	box-shadow: 0 -4rpx 20rpx var(--plat-shadow);
+	z-index: 99;
+}
+
+.plat-detail-foot__actions {
+	display: flex;
+	align-items: center;
+	gap: 48rpx;
+}
+
+.plat-detail-foot__item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: transparent;
+	padding: 0;
+	margin: 0;
+	line-height: normal;
+}
+
+.plat-detail-foot__share::after {
+	border: none;
+}
+
+.plat-detail-foot__icon {
+	width: 44rpx;
+	height: 44rpx;
+}
+
+.plat-detail-foot__label {
+	font-size: 22rpx;
+	color: var(--plat-text-sub);
+	margin-top: 4rpx;
+}
+
+.plat-detail-foot__btn {
+	flex: 1;
+	max-width: 480rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	text-align: center;
+	background: linear-gradient(135deg, var(--plat-brand-lite) 0%, var(--plat-brand) 100%);
+	color: #FFFFFF;
+	font-size: 30rpx;
+	font-weight: 500;
+	border-radius: 999rpx;
+	margin-left: 24rpx;
+	box-shadow: 0 8rpx 24rpx var(--plat-shadow-lg);
+}
+
+/* ---- 开票模块 ---- */
+.plat-invoice-page {
+	padding-bottom: calc(200rpx + env(safe-area-inset-bottom));
+}
+
+.plat-filter-bar__action {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 8rpx 0;
+}
+
+.plat-filter-popup {
+	padding-top: 100rpx;
+}
+
+.plat-filter-popup__title {
+	font-weight: 600;
+	font-size: 30rpx;
+	color: var(--plat-text);
+	padding: 0 30rpx;
+}
+
+.plat-filter-popup__time {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 20rpx 30rpx;
+}
+
+.plat-filter-popup__time-item {
+	flex: 1;
+	height: 70rpx;
+	background: var(--plat-soft-bg);
+	border-radius: 16rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1rpx solid var(--plat-line);
+	color: var(--plat-text);
+	font-size: 26rpx;
+}
+
+.plat-filter-popup__btns {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 88rpx;
+	margin-top: 30rpx;
+}
+
+.plat-filter-popup__btn {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28rpx;
+}
+
+.plat-filter-popup__btn--cancel {
+	background: var(--plat-page-bg);
+	color: var(--plat-text);
+}
+
+.plat-filter-popup__btn--ok {
+	background: var(--plat-brand);
+	color: #FFFFFF;
+}
+
+.plat-invoice-card {
+	display: flex;
+	align-items: flex-start;
+	padding: 28rpx;
+	margin-bottom: 24rpx;
+}
+
+.plat-invoice-card__check {
+	flex-shrink: 0;
+	padding-top: 8rpx;
+}
+
+.plat-invoice-card__main {
+	flex: 1;
+	min-width: 0;
+	margin-left: 16rpx;
+}
+
+.plat-invoice-card__meta {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-top: 10rpx;
+	line-height: 1.5;
+}
+
+.plat-invoice-card__foot {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-top: 16rpx;
+}
+
+.plat-invoice-foot__summary {
+	display: flex;
+	align-items: center;
+	height: 50rpx;
+	background: var(--plat-soft-bg);
+	font-size: 24rpx;
+	padding: 0 30rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-invoice-foot__summary text {
+	margin: 0 10rpx;
+	color: var(--plat-brand);
+	font-weight: 600;
+}
+
+.plat-invoice-foot__actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 15rpx 30rpx;
+}
+
+.plat-invoice-foot__all {
+	color: var(--plat-brand);
+	font-size: 28rpx;
+	margin-left: 8rpx;
+}
+
+.plat-invoice-record {
+	padding: 28rpx;
+	margin-bottom: 24rpx;
+}
+
+.plat-invoice-record__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-weight: 600;
+	font-size: 30rpx;
+	margin-bottom: 20rpx;
+}
+
+.plat-invoice-record__head--success {
+	color: var(--plat-brand);
+}
+
+.plat-invoice-record__head--fail {
+	color: var(--plat-price);
+}
+
+.plat-invoice-record__line {
+	color: var(--plat-text-sub);
+	font-size: 26rpx;
+	margin-top: 10rpx;
+	line-height: 1.5;
+}
+
+.plat-invoice-record__time {
+	color: var(--plat-text-sub);
+	font-size: 24rpx;
+	margin-top: 16rpx;
+	text-align: right;
+}
+
+.plat-setting-icon {
+	width: 40rpx;
+	height: 45rpx;
+	margin-right: 16rpx;
+}
+
+/* ---- 确认订单 T6 ---- */
+.plat-order-page {
+	padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.plat-order-summary {
+	display: flex;
+	align-items: center;
+	padding: 28rpx;
+	margin: 20rpx 30rpx 0;
+}
+
+.plat-order-summary__img {
+	width: 185rpx;
+	height: 145rpx;
+	border-radius: var(--plat-radius-card);
+	margin-right: 20rpx;
+	flex-shrink: 0;
+}
+
+.plat-order-summary__body {
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-order-summary__name {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.plat-order-summary__meta {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-order-summary__dates {
+	display: flex;
+	align-items: center;
+	margin-top: 12rpx;
+}
+
+.plat-order-summary__date-val {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-order-summary__date-unit {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-left: 4rpx;
+}
+
+.plat-order-summary__date-sep {
+	color: var(--plat-text-sub);
+	margin: 0 8rpx;
+}
+
+.plat-order-foot {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-order-foot__btn {
+	width: 40%;
+	height: 70rpx;
+	line-height: 70rpx;
+	font-size: 28rpx;
+	padding: 0;
+}
+
+.plat-order-link {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	text-align: right;
+}
+
+.plat-order-link--price {
+	color: var(--plat-price);
+}
+
+.plat-form-field__price {
+	color: var(--plat-brand);
+	font-weight: 600;
+	font-size: 28rpx;
+}
+
+.plat-form-required {
+	color: var(--plat-price);
+	margin-left: 4rpx;
+}
+
+.plat-form-section-label {
+	margin: 20rpx 30rpx 0;
+	color: var(--plat-text-sub);
+	font-size: 26rpx;
+}
+
+/* ---- 评论列表 T5 ---- */
+.plat-review-page {
+	padding: 20rpx 0 30rpx;
+}
+
+.plat-review-card {
+	margin: 0 30rpx 20rpx;
+	padding: 28rpx;
+}
+
+.plat-review-card__avatar {
+	width: 64rpx;
+	height: 64rpx;
+	border-radius: 50%;
+	flex-shrink: 0;
+	margin-right: 16rpx;
+}
+
+.plat-review-card__body {
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-review-card__top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-review-card__name {
+	font-size: 26rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-review-card__text {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	line-height: 1.55;
+	margin-top: 12rpx;
+}
+
+.plat-review-card__imgs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12rpx;
+	margin-top: 12rpx;
+}
+
+.plat-review-card__img {
+	width: 156rpx;
+	height: 156rpx;
+	border-radius: 12rpx;
+}
+
+.plat-review-card__time {
+	font-size: 22rpx;
+	color: var(--plat-text-sub);
+	margin-top: 12rpx;
+}
+
+.plat-info-content {
+	font-size: 28rpx;
+	color: var(--plat-text);
+	line-height: 1.8;
+}
+
+/* ---- 评价页 T6 ---- */
+.plat-evaluate-page {
+	padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.plat-evaluate__area {
+	width: 100%;
+	box-sizing: border-box;
+	background: var(--plat-page-bg);
+	border-radius: 16rpx;
+	padding: 16rpx;
+}
+
+.plat-evaluate__rate {
+	padding: 8rpx 0 4rpx;
+}
+
+.plat-evaluate__imgs {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.plat-evaluate__img-wrap {
+	position: relative;
+	margin-right: 10rpx;
+	margin-bottom: 10rpx;
+}
+
+.plat-evaluate__img {
+	width: 170rpx;
+	height: 170rpx;
+	border-radius: 12rpx;
+}
+
+.plat-evaluate__img-del {
+	z-index: 9;
+	position: absolute;
+	top: -10rpx;
+	right: -10rpx;
+}
+
+/* ---- 房型详情 T7 ---- */
+.plat-room-detail-page {
+	padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.plat-room-detail__price-row {
+	display: flex;
+	align-items: baseline;
+	margin-top: 16rpx;
+}
+
+.plat-room-detail__vip {
+	display: flex;
+	align-items: center;
+	background: #F1E0CE;
+	border-radius: 6rpx;
+	height: 32rpx;
+	font-size: 20rpx;
+	margin-left: 12rpx;
+	overflow: hidden;
+}
+
+.plat-room-detail__vip-badge {
+	background: linear-gradient(122deg, #1F1F1F 0%, #6B696C 46%, #0C0304 100%);
+	color: #FFFFFF;
+	padding: 0 8rpx;
+	line-height: 32rpx;
+	font-size: 18rpx;
+}
+
+.plat-room-detail__vip-price {
+	padding: 0 8rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-room-classify {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16rpx 30rpx;
+	margin-top: 24rpx;
+	padding-top: 24rpx;
+	border-top: 1rpx solid var(--plat-line);
+}
+
+.plat-room-classify__item {
+	display: flex;
+	align-items: center;
+}
+
+.plat-room-classify__icon {
+	width: 44rpx;
+	height: 44rpx;
+	margin-right: 15rpx;
+	flex-shrink: 0;
+}
+
+.plat-room-classify__text {
+	font-size: 24rpx;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: var(--plat-text-sub);
+}
+
+.plat-room-detail__rule-title {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	margin-top: 24rpx;
+}
+
+.plat-room-detail__rule-title:first-of-type {
+	margin-top: 8rpx;
+}
+
+.plat-room-detail__rule-text {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	line-height: 1.6;
+	margin-top: 8rpx;
+}
+
+.plat-detail-foot__btn--full {
+	flex: 1;
+	max-width: none;
+	margin-left: 0;
+}
+
+/* ---- 房型列表 T4 ---- */
+.plat-room-list-page {
+	padding-bottom: 30rpx;
+}
+
+.plat-room-filter {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #FFFFFF;
+	border-radius: var(--plat-radius-card);
+	padding: 24rpx 28rpx;
+	box-shadow: 0 4rpx 24rpx var(--plat-shadow);
+}
+
+.plat-room-filter__dates {
+	display: flex;
+	align-items: baseline;
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-room-filter__val {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-room-filter__unit {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin: 0 8rpx 0 4rpx;
+}
+
+.plat-room-filter__nights {
+	font-size: 22rpx;
+	color: var(--plat-brand);
+	background: var(--plat-soft-bg);
+	padding: 4rpx 14rpx;
+	border-radius: 999rpx;
+	margin: 0 12rpx;
+	white-space: nowrap;
+}
+
+.plat-room-filter__more {
+	display: flex;
+	align-items: center;
+	gap: 6rpx;
+	flex-shrink: 0;
+	margin-left: 16rpx;
+	font-size: 26rpx;
+	color: var(--plat-text);
+}
+
+.plat-room-filter__vip {
+	display: inline-flex;
+	align-items: center;
+	background: #F1E0CE;
+	border-radius: 6rpx;
+	height: 32rpx;
+	font-size: 20rpx;
+	overflow: hidden;
+}
+
+.plat-room-filter__vip-badge {
+	background: linear-gradient(122deg, #1F1F1F 0%, #6B696C 46%, #0C0304 100%);
+	color: #FFFFFF;
+	padding: 0 8rpx;
+	line-height: 32rpx;
+	font-size: 18rpx;
+}
+
+.plat-room-filter__vip-price {
+	padding: 0 8rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-room-filter-popup {
+	padding: 30rpx;
+	padding-bottom: calc(30rpx + env(safe-area-inset-bottom));
+	max-height: 70vh;
+	overflow-y: auto;
+	background: #FFFFFF;
+}
+
+.plat-room-filter-section {
+	margin-bottom: 40rpx;
+}
+
+.plat-room-filter-section__title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	margin-bottom: 20rpx;
+}
+
+.plat-room-filter-tags {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.plat-room-filter-tag {
+	padding: 16rpx 30rpx;
+	background-color: var(--plat-page-bg);
+	border-radius: 12rpx;
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-right: 20rpx;
+	margin-bottom: 20rpx;
+	border: 1rpx solid var(--plat-line);
+}
+
+.plat-room-filter-tag--on {
+	background-color: var(--plat-soft-bg);
+	color: var(--plat-brand);
+	border-color: var(--plat-brand);
+}
+
+.plat-room-filter-price-range {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20rpx;
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-room-filter-popup__foot {
+	display: flex;
+	align-items: center;
+	gap: 20rpx;
+	padding-top: 20rpx;
+	border-top: 1rpx solid var(--plat-line);
+}
+
+.plat-room-filter-popup__reset {
+	flex: 1;
+}
+
+.plat-room-filter-popup__confirm {
+	flex: 2;
+}
+
+/* ---- 订单详情 T7 ---- */
+.plat-order-detail-page {
+	padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.plat-order-status {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin: 0 30rpx 20rpx;
+	padding: 34rpx 28rpx;
+	background: linear-gradient(135deg, var(--plat-brand-deep) 0%, var(--plat-brand) 100%);
+	border-radius: var(--plat-radius-card);
+	color: #FFFFFF;
+	box-shadow: 0 8rpx 32rpx var(--plat-shadow-lg);
+}
+
+.plat-order-status__main {
+	flex: 1;
+	min-width: 0;
+	padding-right: 20rpx;
+}
+
+.plat-order-status__title {
+	font-size: 34rpx;
+	font-weight: 600;
+}
+
+.plat-order-status__desc {
+	margin-top: 12rpx;
+	font-size: 24rpx;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.plat-order-status__badge {
+	flex-shrink: 0;
+	padding: 12rpx 22rpx;
+	border-radius: 999rpx;
+	font-size: 22rpx;
+	color: #FFFFFF;
+	background: rgba(255, 255, 255, 0.18);
+}
+
+.plat-order-hotel {
+	padding: 28rpx;
+}
+
+.plat-order-hotel__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-order-hotel__text {
+	flex: 1;
+	min-width: 0;
+	padding-right: 16rpx;
+}
+
+.plat-order-hotel__cover {
+	width: 110rpx;
+	height: 110rpx;
+	border-radius: var(--plat-radius-card);
+	flex-shrink: 0;
+}
+
+.plat-order-stay {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 24rpx;
+	padding-top: 24rpx;
+	border-top: 1rpx solid var(--plat-line);
+}
+
+.plat-order-stay__item {
+	text-align: center;
+}
+
+.plat-order-stay__val {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-order-stay__label {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-order-stay__dash {
+	width: 60rpx;
+	height: 2rpx;
+	background: var(--plat-line);
+}
+
+.plat-order-verify {
+	padding: 28rpx;
+	text-align: center;
+}
+
+.plat-order-verify__panel {
+	width: 300rpx;
+	margin: 0 auto;
+}
+
+.plat-order-verify__qr {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.plat-order-verify__barcode {
+	margin-left: -90rpx;
+	margin-top: -15rpx;
+	transform: rotate(90deg);
+	transform-origin: center center;
+}
+
+.plat-order-verify__no {
+	margin-top: 12rpx;
+	font-size: 28rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-order-info-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24rpx;
+	padding: 16rpx 0;
+}
+
+.plat-order-info-row:first-of-type {
+	padding-top: 0;
+}
+
+.plat-order-info-row__label {
+	font-size: 28rpx;
+	color: var(--plat-text);
+	flex-shrink: 0;
+}
+
+.plat-order-info-row__value {
+	font-size: 28rpx;
+	color: var(--plat-text-sub);
+	text-align: right;
+}
+
+.plat-order-info-row__copy {
+	display: flex;
+	align-items: center;
+	gap: 8rpx;
+	font-size: 28rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-order-info-row__coupon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	gap: 32rpx;
+}
+
+.plat-order-info-row__coupon-name {
+	flex-shrink: 1;
+}
+
+.plat-order-info-row__coupon-amount {
+	flex-shrink: 0;
+}
+
+.plat-order-shop {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16rpx 0;
+}
+
+.plat-order-shop__text {
+	flex: 1;
+	min-width: 0;
+	padding-right: 16rpx;
+}
+
+.plat-order-shop__name {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-order-shop__addr {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+	line-height: 1.5;
+}
+
+.plat-order-contact {
+	width: 100%;
+	background: var(--plat-soft-bg);
+	color: var(--plat-brand);
+	border-color: var(--plat-soft-bg);
+}
+
+.plat-order-detail-foot {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.plat-order-detail-actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 16rpx;
+	width: 100%;
+}
+
+/* ---- 商家中心 shopCenter · W2 ---- */
+.plat-shop-home-page {
+	padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.plat-shop-head__row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 30rpx;
+}
+
+.plat-shop-head__shop {
+	display: flex;
+	align-items: center;
+	flex: 1;
+	min-width: 0;
+	padding-right: 16rpx;
+}
+
+.plat-shop-head__avatar {
+	width: 45rpx;
+	height: 41rpx;
+	border-radius: 4rpx;
+	margin-right: 10rpx;
+	flex-shrink: 0;
+}
+
+.plat-shop-head__name {
+	font-size: 36rpx;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+
+.plat-shop-head__desc {
+	font-size: 22rpx;
+	color: rgba(255, 255, 255, 0.82);
+	margin-top: 6rpx;
+}
+
+.plat-shop-head__switch {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.plat-shop-head__switch-label {
+	font-size: 22rpx;
+	color: rgba(255, 255, 255, 0.9);
+	margin-right: 8rpx;
+}
+
+.plat-shop-metrics {
+	display: flex;
+	margin: 24rpx 30rpx 0;
+	padding: 28rpx 16rpx;
+}
+
+.plat-shop-pair {
+	display: flex;
+	gap: 16rpx;
+	margin: -20rpx 30rpx 0;
+	position: relative;
+	z-index: 5;
+}
+
+.plat-shop-pair__card {
+	flex: 1;
+	padding: 24rpx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-shop-pair__label {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-shop-pair__val {
+	font-size: 36rpx;
+	font-weight: 700;
+	color: var(--plat-text);
+	margin-top: 8rpx;
+}
+
+.plat-shop-pair__val-sub {
+	font-size: 22rpx;
+	color: var(--plat-text-sub);
+	font-weight: 400;
+	margin-right: 6rpx;
+}
+
+.plat-shop-pair__arrow {
+	width: 28rpx;
+	height: 28rpx;
+}
+
+.plat-shop-user-head {
+	padding: 24rpx 30rpx 0;
+}
+
+.plat-shop-user-head__avatar {
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+	margin-right: 16rpx;
+}
+
+.plat-shop-user-head__name {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+
+.plat-shop-sec {
+	margin: 20rpx 30rpx 0;
+}
+
+.plat-shop-sec__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 12rpx;
+}
+
+.plat-shop-sec__title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-shop-sec__link {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-shop-stats {
+	display: flex;
+	text-align: center;
+	padding: 28rpx 16rpx;
+}
+
+.plat-shop-stats > view {
+	flex: 1;
+}
+
+.plat-shop-stats__val {
+	font-size: 36rpx;
+	font-weight: 700;
+	color: var(--plat-text);
+}
+
+.plat-shop-stats__label {
+	font-size: 22rpx;
+	color: var(--plat-text-sub);
+	margin-top: 6rpx;
+}
+
+.plat-shop-stats__add {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.plat-shop-today-order {
+	display: flex;
+	align-items: center;
+	padding: 24rpx;
+	margin-bottom: 16rpx;
+}
+
+.plat-shop-today-order__date {
+	text-align: center;
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	flex-shrink: 0;
+}
+
+.plat-shop-today-order__range {
+	font-size: 26rpx;
+	font-weight: 600;
+	color: var(--plat-brand);
+	margin-top: 6rpx;
+}
+
+.plat-shop-today-order__vline {
+	width: 1rpx;
+	height: 100rpx;
+	background: var(--plat-line);
+	margin: 0 20rpx;
+	flex-shrink: 0;
+}
+
+.plat-shop-today-order__body {
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-shop-today-order__title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.plat-shop-today-order__meta {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-shop-today-order__meta-val {
+	color: var(--plat-text);
+}
+
+.plat-shop-today-order__phone {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 8rpx;
+}
+
+.plat-shop-today-order__phone-icon {
+	width: 34rpx;
+	height: 34rpx;
+}
+
+.plat-shop-list-page {
+	padding-bottom: 30rpx;
+}
+
+.plat-shop-list-page--subtabs {
+	padding-top: 176rpx;
+}
+
+.plat-shop-list-page--tabs {
+	padding-top: 88rpx;
+}
+
+.plat-shop-subtabs {
+	display: flex;
+	gap: 12rpx;
+	padding: 16rpx 30rpx;
+	background: var(--plat-page-bg);
+}
+
+.plat-shop-subtab {
+	padding: 10rpx 24rpx;
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	border-radius: 999rpx;
+	background: #FFFFFF;
+	border: 1rpx solid var(--plat-line);
+}
+
+.plat-shop-subtab--on {
+	background: var(--plat-soft-bg);
+	color: var(--plat-brand);
+	border-color: var(--plat-brand);
+	font-weight: 600;
+}
+
+.plat-shop-room-card {
+	margin-bottom: 20rpx;
+	padding: 24rpx;
+}
+
+.plat-shop-room-card__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-shop-room-card__type {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-shop-room-card__actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12rpx;
+	margin-top: 16rpx;
+	padding-top: 16rpx;
+	border-top: 1rpx solid var(--plat-line);
+}
+
+.plat-shop-room-status {
+	display: inline-block;
+	font-size: 20rpx;
+	padding: 4rpx 10rpx;
+	border-radius: 6rpx;
+	margin-left: 8rpx;
+}
+
+.plat-shop-room-status--free {
+	background: #DCFCE7;
+	color: #15803D;
+}
+
+.plat-shop-room-status--busy {
+	background: #FEE2E2;
+	color: #B91C1C;
+}
+
+.plat-shop-order-card {
+	margin-bottom: 20rpx;
+	padding: 28rpx;
+}
+
+.plat-shop-order-card__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-shop-order-card__type {
+	display: flex;
+	align-items: center;
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-shop-order-card__type-icon {
+	width: 36rpx;
+	height: 37rpx;
+	margin-right: 12rpx;
+}
+
+.plat-shop-order-card__status {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-brand);
+}
+
+.plat-shop-order-card__divider {
+	border-top: 1rpx solid var(--plat-line);
+	margin: 20rpx 0;
+}
+
+.plat-shop-order-card__main {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-shop-order-card__cover {
+	width: 110rpx;
+	height: 110rpx;
+	border-radius: var(--plat-radius-card);
+	flex-shrink: 0;
+}
+
+.plat-shop-order-card__actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 12rpx;
+	margin-top: 16rpx;
+}
+
+.plat-shop-stay {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: var(--plat-soft-bg);
+	border-radius: 16rpx;
+	padding: 24rpx;
+	margin-top: 20rpx;
+}
+
+.plat-shop-stay__sep {
+	width: 1rpx;
+	height: 60rpx;
+	background: var(--plat-line);
+	flex-shrink: 0;
+}
+
+.plat-shop-stay__val {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-shop-stay__label {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 6rpx;
+}
+
+.plat-shop-scan-page {
+	padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.plat-shop-scan {
+	margin: 20rpx 30rpx;
+	padding: 32rpx;
+}
+
+.plat-shop-scan__label {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	margin-bottom: 16rpx;
+}
+
+.plat-shop-scan__row {
+	display: flex;
+	align-items: center;
+}
+
+.plat-shop-scan__input {
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-shop-scan__action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 12rpx;
+	padding: 16rpx;
+	background: var(--plat-soft-bg);
+	border-radius: 16rpx;
+}
+
+.plat-shop-scan__tip {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 16rpx;
+	line-height: 1.6;
+}
+
+.plat-form-upload {
+	width: 210rpx;
+	height: 210rpx;
+	border-radius: 16rpx;
+	margin-right: 15rpx;
+	margin-bottom: 15rpx;
+	overflow: hidden;
+	position: relative;
+}
+
+.plat-form-upload:nth-child(4n) {
+	margin-right: 0;
+}
+
+.plat-form-upload__img {
+	width: 100%;
+	height: 100%;
+	border-radius: 16rpx;
+}
+
+.plat-form-upload--add {
+	background-color: var(--plat-page-bg);
+	border: 1rpx dashed var(--plat-line);
+	text-align: center;
+}
+
+.plat-form-upload__icon {
+	width: 55rpx;
+	height: 55rpx;
+	margin-top: 50rpx;
+}
+
+.plat-form-upload__text {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-form-upload__del {
+	z-index: 9;
+	position: absolute;
+	top: -10rpx;
+	right: -10rpx;
+}
+
+.plat-form-tip {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin: 12rpx 0 20rpx;
+}
+
+.plat-form-textarea {
+	margin-top: 20rpx;
+}
+
+.plat-form-textarea__label {
+	font-size: 28rpx;
+	color: var(--plat-text);
+	margin-bottom: 12rpx;
+}
+
+.plat-form-textarea__field {
+	background-color: var(--plat-page-bg) !important;
+	font-size: 26rpx;
+	border-radius: 16rpx;
+}
+
+.plat-form-agree {
+	font-size: 24rpx;
+	color: var(--plat-brand);
+}
+
+.plat-form-field--stack {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.plat-form-field--stack .plat-form-field__label {
+	margin-bottom: 12rpx;
+}
+
+.plat-form-field--stack .plat-form-field__input,
+.plat-form-field--stack .plat-form-field__value {
+	width: 100%;
+	text-align: left;
+}
+
+.plat-form-field__placeholder {
+	color: var(--plat-text-sub);
+}
+
+/* ---- T10 钱包/认证/会员 ---- */
+.plat-wallet-page {
+	padding-bottom: 30rpx;
+}
+
+.plat-wallet-hero {
+	text-align: center;
+	padding: 60rpx 30rpx 40rpx;
+	color: #FFFFFF;
+}
+
+.plat-wallet-hero__label {
+	font-size: 28rpx;
+	opacity: 0.9;
+}
+
+.plat-wallet-hero__num {
+	font-size: 72rpx;
+	font-weight: 700;
+	margin-top: 16rpx;
+	color: #FFFFFF;
+}
+
+.plat-wallet-hero__sub {
+	font-size: 26rpx;
+	opacity: 0.85;
+	margin-top: 12rpx;
+}
+
+.plat-wallet-action {
+	padding: 30rpx;
+}
+
+.plat-wallet-action__top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-wallet-action__label {
+	font-size: 28rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-wallet-action__num {
+	font-size: 48rpx;
+	font-weight: 700;
+	color: var(--plat-brand);
+	margin-top: 8rpx;
+}
+
+.plat-record-card {
+	padding: 28rpx;
+	margin-bottom: 24rpx;
+}
+
+.plat-record-card__title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	margin-bottom: 8rpx;
+}
+
+.plat-record-card__content {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-bottom: 8rpx;
+}
+
+.plat-record-card__time {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-bottom: 8rpx;
+}
+
+.plat-record-card__foot {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-top: 12rpx;
+}
+
+.plat-record-card__amount--in {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: var(--plat-brand);
+}
+
+.plat-record-card__amount--out {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: var(--plat-price);
+}
+
+.plat-record-card__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 16rpx;
+}
+
+.plat-record-card__money {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-record-card__line {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-bottom: 8rpx;
+	line-height: 1.5;
+}
+
+.plat-record-card__status {
+	color: var(--plat-brand);
+	margin-right: 12rpx;
+	font-size: 26rpx;
+}
+
+.plat-record-card__status--fail {
+	color: var(--plat-price);
+}
+
+.plat-wallet-links {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 30rpx;
+	font-size: 28rpx;
+	color: var(--plat-brand);
+}
+
+.plat-vip-page {
+	min-height: 100vh;
+	padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.plat-vip-hero {
+	padding: 40rpx 30rpx 24rpx;
+}
+
+.plat-vip-card {
+	background: linear-gradient(135deg, var(--plat-brand-deep) 0%, var(--plat-brand) 60%, var(--plat-brand-lite) 100%);
+	border-radius: var(--plat-radius-card);
+	padding: 40rpx 30rpx;
+	color: #FFFFFF;
+	box-shadow: 0 12rpx 40rpx var(--plat-shadow-lg);
+}
+
+.plat-vip-card__badge {
+	font-size: 32rpx;
+	font-weight: 700;
+	margin-bottom: 12rpx;
+}
+
+.plat-vip-card__hint {
+	font-size: 24rpx;
+	opacity: 0.9;
+}
+
+.plat-vip-card__expire {
+	font-size: 24rpx;
+	opacity: 0.85;
+	margin-top: 40rpx;
+}
+
+.plat-vip-benefits {
+	display: flex;
+	justify-content: space-between;
+	padding: 10rpx 0 20rpx;
+}
+
+.plat-vip-benefit {
+	width: calc((100% - 60rpx) / 4);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.plat-vip-benefit__icon {
+	width: 79rpx;
+	height: 79rpx;
+	border-radius: 50%;
+}
+
+.plat-vip-benefit__label {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 12rpx;
+}
+
+.plat-vip-packages {
+	white-space: nowrap;
+	width: 100%;
+	padding: 10rpx 0;
+}
+
+.plat-vip-package {
+	display: inline-block;
+	width: calc((100% - 40rpx) / 3);
+	text-align: center;
+	border-radius: 16rpx;
+	border: 2rpx solid var(--plat-line);
+	background: var(--plat-page-bg);
+	padding: 30rpx 0;
+	margin-right: 20rpx;
+	color: var(--plat-text);
+	vertical-align: top;
+}
+
+.plat-vip-package--active {
+	border-color: var(--plat-brand);
+	background: var(--plat-soft-bg);
+	color: var(--plat-brand);
+}
+
+.plat-vip-package__title {
+	font-size: 28rpx;
+	font-weight: 600;
+	padding-bottom: 8rpx;
+}
+
+.plat-vip-package__price {
+	font-size: 56rpx;
+	font-weight: 700;
+}
+
+.plat-vip-package__unit {
+	font-size: 20rpx;
+}
+
+.plat-form-tip--block {
+	padding: 0 30rpx 30rpx;
+	line-height: 1.6;
+}
+
+.plat-audit-tip {
+	color: var(--plat-price);
+	font-size: 26rpx;
+	margin-bottom: 20rpx;
+}
+
+.plat-upload-box__del {
+	position: absolute;
+	top: -10rpx;
+	right: -10rpx;
+	z-index: 9;
+}
+
+.plat-tag-input-wrap {
+	padding: 10rpx 20rpx;
+	background: var(--plat-soft-bg);
+	border-radius: 8rpx;
+	margin-bottom: 16rpx;
+	min-width: 140rpx;
+	border: 1rpx solid var(--plat-line);
+}
+
+.plat-tag-input {
+	font-size: 24rpx;
+	color: var(--plat-text);
+	width: 120rpx;
+	height: 40rpx;
+	line-height: 40rpx;
+}
+
+.plat-tag-tip {
+	font-size: 22rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+/* ---- T10 商家端钱包/认证补充 ---- */
+.plat-upload-box--block {
+	width: 100%;
+	height: 280rpx;
+	margin-right: 0;
+	margin-top: 16rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.plat-upload-box--preview {
+	padding: 0;
+	overflow: hidden;
+}
+
+.plat-upload-box__camera {
+	width: 110rpx;
+	height: 110rpx;
+	background-color: var(--plat-brand);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.plat-wallet-input-row {
+	display: flex;
+	align-items: center;
+	padding: 20rpx 0 16rpx;
+	border-bottom: 1rpx solid var(--plat-line);
+}
+
+.plat-wallet-input-row__symbol {
+	font-size: 34rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	margin-right: 16rpx;
+}
+
+.plat-wallet-input-row__field {
+	flex: 1;
+	font-size: 34rpx;
+	color: var(--plat-text);
+	height: 80rpx;
+	line-height: 80rpx;
+}
+
+.plat-wallet-way-link {
+	font-size: 22rpx;
+	color: var(--plat-text-sub);
+	align-items: baseline;
+}
+
+.plat-wallet-way-link__arrow {
+	width: 11rpx;
+	height: 18rpx;
+	margin-left: 8rpx;
+}
+
+.plat-wallet-popup {
+	width: 560rpx;
+	margin: 0;
+}
+
+.plat-wallet-popup__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-wallet-popup__close {
+	font-size: 36rpx;
+	color: var(--plat-text-sub);
+}
+
+.plat-wallet-popup__body {
+	margin-top: 24rpx;
+	border: 4rpx solid var(--plat-line);
+	border-radius: var(--plat-radius-card);
+	overflow: hidden;
+}
+
+.plat-wallet-popup__img {
+	width: 100%;
+	height: 400rpx;
+}
+
+.plat-list-load {
+	text-align: center;
+	padding: 20rpx;
+	color: var(--plat-text-sub);
+	font-size: 24rpx;
+}
+
+/* ---- T9 消息/IM · 联系客服 ---- */
+.plat-im-page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: var(--plat-page-bg);
+}
+
+.plat-im-head {
+	padding: 24rpx 30rpx 32rpx;
+	flex-shrink: 0;
+}
+
+.plat-im-head__inner {
+	display: flex;
+	align-items: center;
+	background: rgba(255, 255, 255, 0.18);
+	border-radius: var(--plat-radius-card);
+	padding: 24rpx;
+}
+
+.plat-im-head__info {
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-im-head__name {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+
+.plat-im-head__status {
+	font-size: 24rpx;
+	color: rgba(255, 255, 255, 0.88);
+	margin-top: 6rpx;
+}
+
+.plat-im-stream {
+	flex: 1;
+	padding: 20rpx 30rpx 180rpx;
+	box-sizing: border-box;
+}
+
+.plat-im-time {
+	text-align: center;
+	font-size: 22rpx;
+	color: var(--plat-text-sub);
+	margin-bottom: 24rpx;
+}
+
+.plat-im-row {
+	display: flex;
+	margin-bottom: 28rpx;
+}
+
+.plat-im-row--left {
+	flex-direction: row;
+	align-items: flex-start;
+}
+
+.plat-im-avatar {
+	width: 72rpx;
+	height: 72rpx;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	margin-right: 16rpx;
+}
+
+.plat-im-avatar--cs {
+	background: linear-gradient(135deg, var(--plat-brand-lite) 0%, var(--plat-brand) 100%);
+}
+
+.plat-im-avatar__text {
+	font-size: 26rpx;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+
+.plat-im-bubble {
+	max-width: calc(100% - 100rpx);
+	border-radius: 4rpx 24rpx 24rpx 24rpx;
+	padding: 24rpx;
+	word-break: break-all;
+}
+
+.plat-im-bubble--left {
+	background: #FFFFFF;
+	box-shadow: 0 4rpx 20rpx var(--plat-shadow);
+}
+
+.plat-im-bubble__text {
+	font-size: 28rpx;
+	color: var(--plat-text);
+	line-height: 1.6;
+}
+
+.plat-im-bubble__label {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-bottom: 8rpx;
+}
+
+.plat-im-bubble__wx {
+	font-size: 34rpx;
+	font-weight: 600;
+	color: var(--plat-brand);
+	letter-spacing: 1rpx;
+}
+
+.plat-im-bubble--qr {
+	text-align: center;
+}
+
+.plat-im-bubble__qr {
+	width: 100%;
+	max-width: 400rpx;
+	height: 400rpx;
+	border-radius: 16rpx;
+	display: block;
+	margin: 0 auto;
+}
+
+.plat-im-bubble__tip {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-top: 20rpx;
+}
+
+.plat-im-bubble__refresh {
+	font-size: 24rpx;
+	color: var(--plat-brand);
+	margin-top: 16rpx;
+}
+
+.plat-im-foot {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #FFFFFF;
+	padding: 16rpx 30rpx;
+	padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+	box-shadow: 0 -4rpx 20rpx var(--plat-shadow);
+	z-index: 99;
+}
+
+.plat-im-foot__bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: var(--plat-soft-bg);
+	border-radius: 999rpx;
+	padding: 12rpx 12rpx 12rpx 28rpx;
+	border: 1rpx solid var(--plat-line);
+}
+
+.plat-im-foot__wx {
+	flex: 1;
+	font-size: 26rpx;
+	color: var(--plat-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-right: 16rpx;
+}
+
+.plat-im-foot__copy {
+	flex-shrink: 0;
+	min-width: 160rpx;
+}
+
+/* ---- 邀请好友 T5 · 扁列表卡 + 贴底双钮 ---- */
+.plat-invite-page {
+	padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.plat-invite-head {
+	padding: 40rpx 30rpx 60rpx;
+}
+
+.plat-invite-head__title {
+	font-size: 40rpx;
+	font-weight: 700;
+	color: #FFFFFF;
+}
+
+.plat-invite-head__hint {
+	font-size: 26rpx;
+	color: rgba(255, 255, 255, 0.88);
+	margin-top: 12rpx;
+}
+
+.plat-invite-feed {
+	padding: 0;
+}
+
+.plat-invite-poster {
+	padding: 0;
+	overflow: hidden;
+}
+
+.plat-invite-poster__img {
+	width: 100%;
+	height: 800rpx;
+	display: block;
+}
+
+.plat-invite-profile {
+	padding: 28rpx;
+	margin-top: 20rpx;
+}
+
+.plat-invite-profile__row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plat-invite-profile__user {
+	display: flex;
+	align-items: center;
+	flex: 1;
+	min-width: 0;
+}
+
+.plat-invite-profile__avatar {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.plat-invite-profile__info {
+	margin-left: 20rpx;
+	min-width: 0;
+}
+
+.plat-invite-profile__name {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.plat-invite-profile__id {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-invite-profile__qr {
+	width: 100rpx;
+	height: 100rpx;
+	flex-shrink: 0;
+	margin-left: 20rpx;
+	border-radius: 12rpx;
+	border: 1rpx solid var(--plat-line);
+}
+
+.plat-invite-foot__bar {
+	display: flex;
+	align-items: center;
+	gap: 20rpx;
+}
+
+.plat-invite-foot__btn {
+	flex: 1;
+}
+
+.plat-invite-hidden {
+	position: fixed;
+	left: -1000px;
+}
+
+/* ---- 推广中心/我的收益 T5 · 扁列表卡 + 渐变头 ---- */
+.plat-team-page,
+.plat-earnings-page {
+	padding-bottom: 30rpx;
+}
+
+.plat-team-head {
+	padding: 40rpx 30rpx 60rpx;
+}
+
+.plat-team-head__title {
+	font-size: 40rpx;
+	font-weight: 700;
+	color: #FFFFFF;
+}
+
+.plat-team-head__hint {
+	font-size: 26rpx;
+	color: rgba(255, 255, 255, 0.88);
+	margin-top: 12rpx;
+}
+
+.plat-team-stats {
+	padding: 32rpx 28rpx;
+}
+
+.plat-team-stats__row {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.plat-team-stats__item {
+	text-align: center;
+	flex: 1;
+}
+
+.plat-team-stats__num {
+	font-size: 44rpx;
+	font-weight: 700;
+	color: var(--plat-text);
+}
+
+.plat-team-stats__num--price {
+	color: var(--plat-price);
+}
+
+.plat-team-stats__label {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-team-stats__tip {
+	font-size: 24rpx;
+	color: var(--plat-brand);
+	margin-top: 20rpx;
+	line-height: 1.5;
+}
+
+.plat-team-stats__btn {
+	margin-top: 28rpx;
+}
+
+.plat-team-seg {
+	margin-bottom: 24rpx;
+}
+
+.plat-team-feed {
+	padding-top: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.plat-team-member {
+	padding: 24rpx 28rpx;
+	margin-bottom: 20rpx;
+}
+
+.plat-team-member__main {
+	display: flex;
+	align-items: center;
+}
+
+.plat-team-member__avatar {
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.plat-team-member__body {
+	flex: 1;
+	min-width: 0;
+	margin-left: 20rpx;
+}
+
+.plat-team-member__name {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.plat-team-member__time {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-team-member__idx {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	flex-shrink: 0;
+	margin-left: 16rpx;
+}
+
+.plat-team-member__reward {
+	font-size: 32rpx;
+	font-weight: 700;
+	color: var(--plat-price);
+	flex-shrink: 0;
+	margin-left: 16rpx;
+}
+
+.plat-earnings-hero {
+	padding: 40rpx 30rpx 60rpx;
+	color: #FFFFFF;
+}
+
+.plat-earnings-hero__title {
+	font-size: 40rpx;
+	font-weight: 700;
+	color: #FFFFFF;
+}
+
+.plat-earnings-hero__row {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 32rpx;
+}
+
+.plat-earnings-hero__item {
+	text-align: center;
+	flex: 1;
+}
+
+.plat-earnings-hero__num {
+	font-size: 40rpx;
+	font-weight: 700;
+	color: #FFFFFF;
+}
+
+.plat-earnings-hero__label {
+	font-size: 24rpx;
+	color: rgba(255, 255, 255, 0.88);
+	margin-top: 8rpx;
+}
+
+/* ---- 员工管理 T5 · 扁列表卡 + 渐变头 ---- */
+.plat-emp-time-page,
+.plat-emp-service-page,
+.plat-emp-list-page {
+	padding-bottom: 30rpx;
+}
+
+.plat-emp-list-page {
+	padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.plat-emp-head {
+	padding: 40rpx 30rpx 60rpx;
+}
+
+.plat-emp-head__title {
+	font-size: 40rpx;
+	font-weight: 700;
+	color: #FFFFFF;
+}
+
+.plat-emp-head__hint {
+	font-size: 26rpx;
+	color: rgba(255, 255, 255, 0.88);
+	margin-top: 12rpx;
+}
+
+.plat-emp-date-panel {
+	padding: 20rpx 0;
+	margin-bottom: 20rpx;
+}
+
+.plat-emp-date-scroll {
+	white-space: nowrap;
+	width: 100%;
+}
+
+.plat-emp-date-row {
+	display: inline-flex;
+	padding: 0 24rpx;
+	gap: 12rpx;
+}
+
+.plat-emp-date-tab {
+	display: inline-block;
+	text-align: center;
+	padding: 16rpx 24rpx;
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	border-radius: 16rpx;
+	background: var(--plat-page-bg);
+	border: 1rpx solid var(--plat-line);
+	flex-shrink: 0;
+}
+
+.plat-emp-date-tab--on {
+	background: var(--plat-soft-bg);
+	color: var(--plat-brand);
+	border-color: var(--plat-brand);
+	font-weight: 600;
+}
+
+.plat-emp-date-tab--busy {
+	background: #FEE2E2;
+	color: #B91C1C;
+	border-color: #FEE2E2;
+}
+
+.plat-emp-time-panel {
+	padding: 24rpx;
+	margin-bottom: 20rpx;
+}
+
+.plat-emp-time-grid {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.plat-emp-time-slot {
+	text-align: center;
+	width: 121rpx;
+	border-radius: 16rpx;
+	margin-right: 15rpx;
+	margin-bottom: 15rpx;
+	font-size: 22rpx;
+	padding: 12rpx 0;
+	border: 1rpx solid var(--plat-line);
+}
+
+.plat-emp-time-slot:nth-child(5n) {
+	margin-right: 0;
+}
+
+.plat-emp-time-slot--free {
+	background: #DCFCE7;
+	color: #15803D;
+	border-color: #DCFCE7;
+}
+
+.plat-emp-time-slot--busy {
+	background: #FEE2E2;
+	color: #B91C1C;
+	border-color: #FEE2E2;
+}
+
+.plat-emp-time-slot__sep {
+	margin: 4rpx 0;
+}
+
+.plat-emp-filter {
+	position: relative;
+	top: 0;
+	padding: 0 0 16rpx;
+	background: transparent;
+}
+
+.plat-emp-tab-scroll {
+	white-space: nowrap;
+	width: 100%;
+}
+
+.plat-emp-subtabs {
+	display: inline-flex;
+	padding: 0;
+	background: transparent;
+}
+
+.plat-emp-feed {
+	padding-top: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.plat-emp-service-card {
+	margin-bottom: 20rpx;
+}
+
+.plat-emp-service-card__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 8rpx;
+}
+
+.plat-emp-service-card__status {
+	font-size: 26rpx;
+	font-weight: 600;
+	color: var(--plat-text-sub);
+	flex-shrink: 0;
+	margin-left: 12rpx;
+}
+
+.plat-emp-service-card__status--active {
+	color: var(--plat-price);
+}
+
+.plat-emp-service-card__foot {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 16rpx;
+}
+
+.plat-emp-search {
+	padding: 24rpx;
+	margin-bottom: 20rpx;
+}
+
+.plat-emp-member {
+	padding: 24rpx 28rpx;
+	margin-bottom: 20rpx;
+}
+
+.plat-emp-member__main {
+	display: flex;
+	align-items: center;
+}
+
+.plat-emp-member__avatar {
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.plat-emp-member__body {
+	flex: 1;
+	min-width: 0;
+	margin-left: 20rpx;
+}
+
+.plat-emp-member__name {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.plat-emp-member__phone {
+	font-size: 24rpx;
+	color: var(--plat-text-sub);
+	margin-top: 8rpx;
+}
+
+.plat-emp-add-page {
+	padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.plat-emp-code-row {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	flex: 1;
+}
+
+.plat-emp-code-input {
+	width: 200rpx;
+	flex: none;
+	margin-right: 12rpx;
+}
+
+.plat-emp-code-btn {
+	flex-shrink: 0;
+	height: 56rpx;
+	line-height: 56rpx;
+	padding: 0 20rpx;
+}
+
+/* ---- T8 设置/协议 · 分组列表 + 协议富文本卡 ---- */
+.plat-setting-page,
+.plat-agree-page,
+.plat-logoff-page,
+.plat-uppwd-page {
+	padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.plat-setting-head {
+	padding: 40rpx 30rpx 60rpx;
+}
+
+.plat-setting-head__title {
+	font-size: 40rpx;
+	font-weight: 700;
+	color: #FFFFFF;
+}
+
+.plat-setting-head__hint {
+	font-size: 26rpx;
+	color: rgba(255, 255, 255, 0.88);
+	margin-top: 12rpx;
+}
+
+.plat-setting-group {
+	margin-bottom: 24rpx;
+}
+
+.plat-setting-group__title {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	padding: 0 8rpx 16rpx;
+}
+
+.plat-agree-card {
+	padding: 32rpx 28rpx;
+}
+
+.plat-agree-card :deep(.u-parse) {
+	font-size: 28rpx;
+	color: var(--plat-text);
+	line-height: 1.8;
+}
+
+.plat-logoff-warn {
+	padding: 48rpx 28rpx 36rpx;
+	text-align: center;
+}
+
+.plat-logoff-warn__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.plat-logoff-warn__title {
+	font-size: 36rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+	margin-top: 24rpx;
+}
+
+.plat-logoff-warn__desc {
+	font-size: 26rpx;
+	color: var(--plat-text-sub);
+	margin-top: 16rpx;
+	line-height: 1.6;
+}
+
+.plat-logoff-item {
+	font-size: 26rpx;
+	color: var(--plat-text);
+	line-height: 1.8;
+	margin-bottom: 12rpx;
+}
+
+.plat-logoff-item:last-child {
+	margin-bottom: 0;
+}
+
+.plat-logoff-agree {
+	text-align: center;
+	color: var(--plat-text-sub);
+	margin-top: 32rpx;
+	font-size: 24rpx;
+	padding: 0 8rpx;
+	line-height: 1.6;
+}
+
+.plat-logoff-agree text {
+	color: var(--plat-brand);
+}
+
+.plat-logoff-btn {
+	margin: 40rpx 0 0;
+}
+
+/* ---- T8 修改密码 · 分组表单卡 ---- */
+.plat-uppwd-field {
+	display: flex;
+	align-items: center;
+	padding: 36rpx 0;
+	border-bottom: 1rpx solid var(--plat-line);
+}
+
+.plat-uppwd-field:last-child {
+	border-bottom: none;
+}
+
+.plat-uppwd-field__label {
+	width: 140rpx;
+	flex-shrink: 0;
+	font-size: 28rpx;
+	color: var(--plat-text);
+	margin-right: 20rpx;
+}
+
+.plat-uppwd-field__input {
+	flex: 1;
+	font-size: 28rpx;
+	color: var(--plat-text);
+}
+
+.plat-uppwd-input-ph {
+	color: var(--plat-text-sub);
+}
+
+.plat-uppwd-btn {
+	margin-top: 40rpx;
+}
+
+/* ---- T8 帮助中心 · 分组折叠列表 + 底栏双操作 ---- */
+.plat-help-page {
+	padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.plat-help-body {
+	padding-bottom: 20rpx;
+}
+
+.plat-help-category {
+	border-bottom: none !important;
+	padding-bottom: 25rpx !important;
+}
+
+.plat-help-category__title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--plat-text);
+}
+
+.plat-help-category__arrow {
+	width: 21rpx;
+	height: 15rpx;
+	flex-shrink: 0;
+}
+
+.plat-help-question {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 28rpx 0;
+	border-top: 1rpx solid var(--plat-line);
+}
+
+.plat-help-question__text {
+	flex: 1;
+	font-size: 28rpx;
+	color: var(--plat-text-sub);
+	padding-right: 16rpx;
+}
+
+.plat-help-hover {
+	opacity: 0.7;
+}
+
+.plat-help-foot__bar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--plat-soft-bg);
+	border-radius: var(--plat-radius-card);
+	border: 1rpx solid var(--plat-line);
+	padding: 8rpx;
+}
+
+.plat-help-foot__icon {
+	width: 40rpx;
+	height: 40rpx;
+	margin-left: 12rpx;
+}
+
+.plat-help-foot__btn {
+	padding: 20rpx 24rpx;
+	font-size: 28rpx;
+	color: var(--plat-text);
+}
+
+.plat-help-foot__sep {
+	height: 24rpx;
+	width: 2rpx;
+	background: var(--plat-line);
+	margin: 0 24rpx;
+}
+
+/* ---- T8 帮助详情 · 协议富文本卡 ---- */
+.plat-help-detail-page .plat-setting-head__title {
+	font-size: 36rpx;
+	line-height: 1.4;
+}
+
+/* ---- T8 反馈表单 · 分组表单卡 + 主按钮 ---- */
+.plat-feedback-page {
+	padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.plat-feedback-card {
+	padding: 28rpx 30rpx;
+}
+
+.plat-feedback-card .plat-feedback__title {
+	margin-bottom: 20rpx;
+}
+
+.plat-feedback__area--inline,
+.plat-feedback__input--inline {
+	box-shadow: none;
+	background: var(--plat-soft-bg);
+	border: 1rpx solid var(--plat-line);
+}
+
+.plat-feedback__area--inline {
+	min-height: 200rpx;
+	box-sizing: border-box;
+}
+
+.plat-feedback-btn {
+	margin: 40rpx 0 0;
+}

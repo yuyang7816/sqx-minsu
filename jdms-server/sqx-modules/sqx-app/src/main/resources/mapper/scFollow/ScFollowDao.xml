@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqx.app.base.shops.dao.ScFollowDao">
+
+
+    <select id="getMyFollowCount" resultType="java.lang.Integer">
+        select count(1) from sc_follow where user_id = #{userId} and classify = 3
+    </select>
+    <select id="getMyFollowGoodsCount" resultType="java.lang.Integer">
+        select count(1)
+        from sc_follow sc
+        left join goods g on g.good_id = sc.by_id
+        where sc.user_id = #{userId} and sc.classify = 1 and g.good_id is not null
+    </select>
+<!--    <select id="getFollowGoodsList" resultType="com.sqx.app.base.shops.entity.ScFollow">-->
+<!--        select s.*,-->
+<!--        (select count(*) from sc_follow f where f.by_id = s.good_id and f.classify = 2) as needCount-->
+<!--        from sc_follow sc-->
+<!--        left join goods s on sc.by_id = s.good_id-->
+<!--        where s.good_id is not null-->
+<!--            and sc.user_id = #{userId}-->
+<!--        <if test="follow.classify!=null and follow.classify != ''">-->
+<!--            and sc.classify = #{follow.classify}-->
+<!--        </if>-->
+<!--        order by sc.create_time desc-->
+<!--    </select>-->
+    <select id="selectByUserId" resultType="com.sqx.app.base.shops.entity.ScFollow">
+        SELECT tu.user_name as userName,tu.avatar as avatar,sf.create_time as createTimeStr,sf.follow_id,sf.by_id,
+               sf.classify
+        FROM sc_follow sf
+        left join tb_user tu on sf.by_id = tu.user_id
+        WHERE sf.user_id = #{userId} AND sf.classify = 3
+    </select>
+    <select id="selectByFanId" resultType="com.sqx.app.base.shops.entity.ScFollow">
+        SELECT f.user_id,tu1.user_name AS userName, tu.avatar AS avatar, f.create_time AS createTimeStr,
+        CASE
+        WHEN m.user_id IS NOT NULL THEN 1
+        ELSE 0
+        END AS is_mutual_follow
+        FROM sc_follow AS f
+        LEFT JOIN sc_follow AS m ON f.user_id = m.by_id AND f.classify = 3 AND m.classify = 3
+        LEFT JOIN tb_user tu ON f.by_id = tu.user_id
+        left join tb_user tu1 on tu1.user_id = f.user_id
+        WHERE f.by_id = #{userId}
+        AND f.classify = 3
+    </select>
+<!--    <select id="selectByMyCollect" resultType="com.sqx.app.base.trends.entity.Trends">-->
+<!--        select s.*,-->
+<!--        (select count(*) from sc_follow f where f.by_id = s.trends_id and f.classify = 4) as needCount-->
+<!--        from sc_follow sc-->
+<!--        left join trends s on sc.by_id = s.trends_id-->
+<!--        where s.good_id is not null-->
+<!--        and sc.user_id = #{userId}-->
+<!--        <if test="follow.classify!=null">-->
+<!--            and sc.classify = #{follow.classify}-->
+<!--        </if>-->
+<!--        order by sc.create_time desc-->
+<!--    </select>-->
+</mapper>

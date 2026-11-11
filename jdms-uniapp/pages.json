@@ -1,0 +1,656 @@
+{
+	"easycom": {
+		"autoscan": true,
+		// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
+		"custom": {
+			"^u--(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
+			"^up-(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
+			"^u-([^-].*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue"
+		}
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/order/index",
+			"style": {
+				"navigationBarTitleText": "订单",
+				"enablePullDownRefresh": true
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "pages/index/search",
+			"style": {
+				"navigationBarTitleText": "酒店列表",
+				"enablePullDownRefresh": true
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "pages/webView/webView",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		}, {
+			"path": "pages/public/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}, {
+			"path": "pages/public/loginphone",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}, {
+			"path": "pages/public/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		}, {
+			"path": "pages/public/forgetPwd",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
+		}, {
+			"path": "pages/my/invitationUser",
+			"style": {
+				"navigationBarTitleText": "邀请好友"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "pages/my/userInfo",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "pages/index/citys/citys",
+			"style": {
+				"navigationBarTitleText": "地址"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}
+	],
+	"subPackages": [{
+		"root": "package",
+		"pages": [{
+				"path": "team/team",
+				"style": {
+					"navigationBarTitleText": "推广中心"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			},
+			{
+				"path": "team/earnings",
+				"style": {
+					"navigationBarTitleText": "我的收益"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			}, {
+				"path": "setting/setting",
+				"style": {
+					"navigationBarTitleText": "设置中心"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			},
+			{
+				"path": "setting/logOff",
+				"style": {
+					"navigationBarTitleText": "注销账号"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			},
+			{
+				"path": "setting/userAgreement",
+				"style": {
+					"navigationBarTitleText": "用户协议"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			},
+			{
+				"path": "setting/privacyPolicy",
+				"style": {
+					"navigationBarTitleText": "隐私政策"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			},
+			{
+				"path": "setting/about",
+				"style": {
+					"navigationBarTitleText": "关于我们"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			},
+			{
+				"path": "setting/cancelAgreement",
+				"style": {
+					"navigationBarTitleText": "用户注销协议"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			},
+			{
+				"path": "setting/vipAgreement",
+				"style": {
+					"navigationBarTitleText": "会员开通协议"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			},
+			{
+				"path": "setting/Informed",
+				"style": {
+					"navigationBarTitleText": "知情同意书"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			}, {
+				"path": "setting/upPwd",
+				"style": {
+					"navigationBarTitleText": "修改密码"
+						// #ifdef H5
+						,
+					"navigationStyle": "custom"
+					// #endif 
+				}
+			}
+		]
+	}, {
+		"root": "my",
+		"pages": [{
+			"path": "wallet/moneyList",
+			"style": {
+				"navigationBarTitleText": "资金明细"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "ticket/ticket",
+			"style": {
+				"navigationBarTitleText": "优惠券"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "ticket/myTicket",
+			"style": {
+				"navigationBarTitleText": "优惠券"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "wallet/cashList",
+			"style": {
+				"navigationBarTitleText": "提现明细"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "wallet/recharge",
+			"style": {
+				"navigationBarTitleText": "充值"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "wallet/zhifubao",
+			"style": {
+				"navigationBarTitleText": "提现账号"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "wallet/cash",
+			"style": {
+				"navigationBarTitleText": "提现"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "feedbackIndex/helpDetail",
+			"style": {
+				"navigationBarTitleText": "帮助中心"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "feedbackIndex/feedbackIndex",
+			"style": {
+				"navigationBarTitleText": "帮助中心"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "feedback/index",
+			"style": {
+				"navigationBarTitleText": "反馈"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "kefu/kefu",
+			"style": {
+				"navigationBarTitleText": "联系客服"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "cyMsg/index",
+			"style": {
+				"navigationBarTitleText": "常用信息"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "shopRz/index",
+			"style": {
+				"navigationBarTitleText": "商家入驻"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "shopRz/shopCheck",
+			"style": {
+				"navigationBarTitleText": "商家信息"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "vip/index",
+			"style": {
+				"navigationBarTitleText": ""
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "collection/collection",
+			"style": {
+				"navigationBarTitleText": "我的收藏"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "coupon/myCouponList",
+			"style": {
+				"navigationBarTitleText": "优惠券"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "wallet/wallet",
+			"style": {
+				"navigationBarTitleText": "我的钱包"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "footprint/footprint",
+			"style": {
+				"navigationBarTitleText": "我的足迹"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}]
+	}, {
+		"root": "subpackage",
+		"pages": [{
+			"path": "invoice/index",
+			"style": {
+				"navigationBarTitleText": "开具发票"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "invoice/Invoicing",
+			"style": {
+				"navigationBarTitleText": "申请开票"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "invoice/kaipiao",
+			"style": {
+				"navigationBarTitleText": "填写开票信息"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "invoice/kpjl",
+			"style": {
+				"navigationBarTitleText": "开票记录"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "invoice/kpsm",
+			"style": {
+				"navigationBarTitleText": "开票说明"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "hotel/comfirOrder",
+			"style": {
+				"navigationBarTitleText": "确认订单"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "hotel/hotelDetail",
+			"style": {
+				"navigationBarTitleText": "酒店详情"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "hotel/commentList",
+			"style": {
+				"navigationBarTitleText": "全部评论"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "order/evaluate",
+			"style": {
+				"navigationBarTitleText": "评论"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "hotel/roomDetail",
+			"style": {
+				"navigationBarTitleText": "酒店详情"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "hotel/roomList",
+			"style": {
+				"navigationBarTitleText": "酒店房型"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "order/orderDetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}]
+	}, {
+		"root": "shopCenter",
+		"pages": [{
+			"path": "index/index",
+			"style": {
+				"navigationBarTitleText": "商家中心",
+				"navigationBarBackgroundColor": "#4F75FB"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "index/renzheng",
+			"style": {
+				"navigationBarTitleText": "企业认证"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "myPosts/index",
+			"style": {
+				"navigationBarTitleText": "我的发布"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "order/index",
+			"style": {
+				"navigationBarTitleText": "订单列表"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "employee/timeList",
+			"style": {
+				"navigationBarTitleText": "TA的忙时"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "employee/serviceList",
+			"style": {
+				"navigationBarTitleText": "TA的服务"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "employee/indexList",
+			"style": {
+				"navigationBarTitleText": "员工管理"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "employee/addEmployee",
+			"style": {
+				"navigationBarTitleText": "添加员工"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "order/sacnCode",
+			"style": {
+				"navigationBarTitleText": "订单核销"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "order/orderDetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "rooms/addRoom",
+			"style": {
+				"navigationBarTitleText": "添加房间"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "rooms/roomsList",
+			"style": {
+				"navigationBarTitleText": "全部房间"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "wallet/index",
+			"style": {
+				"navigationBarTitleText": "钱包"
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}, {
+			"path": "wallet/moneyList",
+			"style": {
+				"navigationBarTitleText": ""
+					// #ifdef H5
+					,
+				"navigationStyle": "custom"
+				// #endif 
+			}
+		}]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "酒店民宿",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#F6F8FB"
+	},
+	"tabBar": {
+		"color": "#B0B8C4",
+		"selectedColor": "#2C8EFE",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "white",
+
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/image/tabbar/index.png",
+			"selectedIconPath": "static/image/tabbar/index_.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/order/index",
+			"iconPath": "static/image/tabbar/msg.png",
+			"selectedIconPath": "static/image/tabbar/msg_.png",
+			"text": "订单"	
+		}, {
+			"pagePath": "pages/my/index",
+			"iconPath": "static/image/tabbar/my.png",
+			"selectedIconPath": "static/image/tabbar/my_.png",
+			"text": "我的"
+		}]
+	},
+	"uniIdRouter": {}
+}

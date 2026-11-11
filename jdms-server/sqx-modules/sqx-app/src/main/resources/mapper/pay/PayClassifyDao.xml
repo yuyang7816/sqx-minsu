@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sqx.app.base.pay.dao.PayClassifyDao">
+
+	<update id="updatePayClassifyCouponId">
+		update pay_classify set coupon_id=null, give_num=null where pay_classify_id=#{payClassifyId}
+	</update>
+
+
+</mapper>

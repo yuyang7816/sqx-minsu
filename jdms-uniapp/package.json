@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "scripts": {
+    "test:unit": "node --test tests/**/*.test.js",
+    "test:e2e": "node tests/e2e-room-flow.test.js"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.11",
+    "dayjs": "^1.11.20",
+    "uview-plus": "^3.7.13"
+  }
+}

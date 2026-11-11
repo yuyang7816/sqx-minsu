@@ -1,0 +1,739 @@
+/* ============================================================
+ * 商家端 · Host Console 设计体系（全新，不复用旧 tk-*）
+ * Brand = #2C8EFE
+ * ============================================================ */
+:root,
+page {
+	--h-brand: #2C8EFE;
+	--h-brand-dark: #3B8FE8;
+	--h-brand-light: #EBF4FF;
+	--h-bg: #F6F8FB;
+	--h-surface: #FFFFFF;
+	--h-border: #EEF1F6;
+	--h-text: #334155;
+	--h-text-2: #94A3B8;
+	--h-price: #FB7185;
+	--h-shadow: none;
+	--h-radius: 16rpx;
+}
+
+.host-page {
+	min-height: 100vh;
+	background: var(--h-bg);
+}
+
+.host-top {
+	background: linear-gradient(180deg, #6BB3FE 0%, #2C8EFE 45%, var(--h-bg) 100%);
+	padding: 32rpx 28rpx 48rpx;
+}
+
+.host-top--safe {
+	padding-top: calc(var(--status-bar-height, 0) + 24rpx);
+}
+
+.host-top__row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.host-top__shop {
+	display: flex;
+	align-items: center;
+}
+
+.host-top__name {
+	font-size: 36rpx;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+
+.host-top__desc {
+	font-size: 22rpx;
+	color: rgba(255, 255, 255, 0.8);
+	margin-top: 6rpx;
+}
+
+.host-metrics {
+	display: flex;
+	background: var(--h-surface);
+	border-radius: var(--h-radius);
+	padding: 28rpx 16rpx;
+	margin-top: 24rpx;
+	border: 1rpx solid var(--h-border);
+}
+
+.host-metrics__item {
+	flex: 1;
+	text-align: center;
+}
+
+.host-metrics__val {
+	font-size: 36rpx;
+	font-weight: 600;
+	color: var(--h-text);
+}
+
+.host-metrics__val--white {
+	color: #FFFFFF;
+}
+
+.host-metrics__label {
+	font-size: 22rpx;
+	color: var(--h-text-2);
+	margin-top: 6rpx;
+}
+
+.host-metrics__label--white {
+	color: rgba(255, 255, 255, 0.82);
+}
+
+.host-pair {
+	display: flex;
+	gap: 16rpx;
+	margin: -20rpx 28rpx 0;
+	position: relative;
+	z-index: 5;
+}
+
+.host-pair__card {
+	flex: 1;
+	background: var(--h-surface);
+	border-radius: var(--h-radius);
+	padding: 24rpx;
+	border: 1rpx solid var(--h-border);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.host-block {
+	margin: 24rpx 28rpx 0;
+}
+
+.host-block__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 12rpx;
+}
+
+.host-block__title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--h-text);
+}
+
+.host-block__link {
+	font-size: 24rpx;
+	color: var(--h-text-2);
+}
+
+.host-panel {
+	background: var(--h-surface);
+	border-radius: var(--h-radius);
+	padding: 24rpx;
+	border: 1rpx solid var(--h-border);
+}
+
+.host-panel--stats {
+	display: flex;
+	text-align: center;
+}
+
+.host-panel--stats > view {
+	flex: 1;
+}
+
+.host-order {
+	margin: 16rpx 28rpx 0;
+	padding: 24rpx;
+	background: var(--h-surface);
+	border-radius: var(--h-radius);
+	border: 1rpx solid var(--h-border);
+	display: flex;
+	align-items: center;
+}
+
+.host-order__date {
+	text-align: center;
+	font-size: 24rpx;
+	flex-shrink: 0;
+}
+
+.host-order__range {
+	font-size: 26rpx;
+	font-weight: 600;
+	color: var(--h-brand);
+	margin-top: 6rpx;
+}
+
+.host-order__vline {
+	width: 1rpx;
+	height: 100rpx;
+	background: var(--h-border);
+	margin: 0 20rpx;
+	flex-shrink: 0;
+}
+
+.host-order__body {
+	flex: 1;
+	min-width: 0;
+}
+
+.host-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 72rpx;
+	padding: 0 28rpx;
+	background: linear-gradient(135deg, #7EBAFF 0%, #2C8EFE 100%);
+	color: #FFFFFF;
+	font-size: 28rpx;
+	font-weight: 500;
+	border-radius: 999rpx;
+}
+
+.host-btn--sm {
+	height: 56rpx;
+	padding: 0 20rpx;
+	font-size: 24rpx;
+}
+
+.host-btn--ghost {
+	background: transparent;
+	color: var(--h-brand);
+	border: 1rpx solid var(--h-brand);
+}
+
+.host-btn--warn {
+	background: #F97316;
+}
+
+.host-foot {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 20rpx 28rpx;
+	padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+	background: var(--h-surface);
+	border-top: 1rpx solid var(--h-border);
+	z-index: 99;
+}
+
+.host-foot .host-btn {
+	width: 100%;
+}
+
+.host-sticky {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 99;
+	background: var(--h-surface);
+	border-bottom: 1rpx solid var(--h-border);
+}
+
+.host-room {
+	margin: 16rpx 28rpx 0;
+	padding: 24rpx;
+	background: var(--h-surface);
+	border-radius: var(--h-radius);
+	border: 1rpx solid var(--h-border);
+}
+
+.host-room__row {
+	display: flex;
+}
+
+.host-room__img {
+	width: 180rpx;
+	height: 180rpx;
+	border-radius: var(--h-radius);
+	flex-shrink: 0;
+	margin-right: 20rpx;
+}
+
+.host-room__name {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--h-text);
+}
+
+.host-room__meta {
+	font-size: 24rpx;
+	color: var(--h-text-2);
+	margin-top: 8rpx;
+}
+
+.host-room__actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12rpx;
+	margin-top: 16rpx;
+}
+
+.host-tag {
+	display: inline-block;
+	font-size: 20rpx;
+	padding: 4rpx 10rpx;
+	border-radius: 6rpx;
+	margin-left: 8rpx;
+}
+
+.host-tag--free {
+	background: #DCFCE7;
+	color: #15803D;
+}
+
+.host-tag--busy {
+	background: #FEE2E2;
+	color: #B91C1C;
+}
+
+.host-subtabs {
+	display: flex;
+	gap: 12rpx;
+	padding: 16rpx 28rpx;
+	background: var(--h-surface);
+	border-bottom: 1rpx solid var(--h-border);
+}
+
+.host-subtab {
+	padding: 10rpx 24rpx;
+	font-size: 24rpx;
+	color: var(--h-text-2);
+	border-radius: 999rpx;
+	background: var(--h-bg);
+}
+
+.host-subtab.is-on {
+	background: var(--h-brand-light);
+	color: var(--h-brand);
+	font-weight: 600;
+}
+
+.host-scan {
+	margin: 28rpx;
+	padding: 32rpx;
+	background: var(--h-surface);
+	border-radius: var(--h-radius);
+	border: 1rpx solid var(--h-border);
+}
+
+.host-scan__action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12rpx;
+	margin-top: 24rpx;
+	padding: 24rpx;
+	border: 1rpx dashed var(--h-brand);
+	border-radius: var(--h-radius);
+	color: var(--h-brand);
+	font-size: 28rpx;
+}
+
+.host-kv {
+	display: flex;
+	justify-content: space-between;
+	padding: 16rpx 0;
+	font-size: 28rpx;
+	border-bottom: 1rpx solid var(--h-border);
+}
+
+.host-kv:last-child {
+	border-bottom: none;
+}
+
+.host-kv__label {
+	color: var(--h-text-2);
+}
+
+.host-kv__value {
+	color: var(--h-text);
+	font-weight: 500;
+}
+
+.host-detail-head {
+	padding: 32rpx 28rpx;
+	background: linear-gradient(135deg, var(--h-brand-dark) 0%, var(--h-brand) 100%);
+	color: #FFFFFF;
+}
+
+.host-detail-head__title {
+	font-size: 34rpx;
+	font-weight: 600;
+}
+
+.host-detail-head__desc {
+	margin-top: 12rpx;
+	font-size: 24rpx;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.86);
+}
+
+.host-detail-head__badge {
+	padding: 12rpx 22rpx;
+	border-radius: 999rpx;
+	font-size: 22rpx;
+	background: rgba(255, 255, 255, 0.18);
+	flex-shrink: 0;
+}
+
+.host-body {
+	padding-top: 88rpx;
+	padding-bottom: 30rpx;
+}
+
+.host-body--subtabs {
+	padding-top: 176rpx;
+}
+
+.host-sticky__inner {
+	padding: 16rpx 0 0;
+}
+
+.host-order-card {
+	margin: 16rpx 28rpx 0;
+	padding: 24rpx;
+	background: var(--h-surface);
+	border-radius: var(--h-radius);
+	border: 1rpx solid var(--h-border);
+}
+
+.host-order-card__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.host-order-card__type {
+	display: flex;
+	align-items: center;
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--h-text);
+}
+
+.host-order-card__type-icon {
+	width: 36rpx;
+	height: 37rpx;
+	margin-right: 12rpx;
+}
+
+.host-order-card__status {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--h-brand);
+}
+
+.host-order-card__divider {
+	border-top: 1rpx solid var(--h-border);
+	margin: 20rpx 0;
+}
+
+.host-order-card__main {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.host-order-card__info {
+	flex: 1;
+	min-width: 0;
+	margin-right: 16rpx;
+}
+
+.host-order-card__name {
+	font-size: 34rpx;
+	font-weight: 600;
+	color: var(--h-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.host-order-card__sub {
+	font-size: 24rpx;
+	color: var(--h-text-2);
+	margin-top: 8rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.host-order-card__cover {
+	width: 110rpx;
+	height: 110rpx;
+	border-radius: var(--h-radius);
+	flex-shrink: 0;
+}
+
+.host-order-card__actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-top: 16rpx;
+}
+
+.host-time-panel {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: var(--h-brand-light);
+	border: 1rpx solid var(--h-border);
+	padding: 24rpx;
+	border-radius: var(--h-radius);
+	margin-top: 20rpx;
+}
+
+.host-time-panel__sep {
+	width: 1rpx;
+	height: 60rpx;
+	background: var(--h-border);
+	flex-shrink: 0;
+}
+
+.host-time-panel__val {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: var(--h-text);
+}
+
+.host-time-panel__label {
+	font-size: 24rpx;
+	color: var(--h-text-2);
+	margin-top: 6rpx;
+}
+
+.host-order__title {
+	font-size: 30rpx;
+	font-weight: 600;
+	color: var(--h-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.host-order__meta {
+	font-size: 26rpx;
+	color: var(--h-text-2);
+	margin-top: 8rpx;
+	display: flex;
+	align-items: center;
+}
+
+.host-order__meta-val {
+	color: var(--h-text);
+}
+
+.host-order__phone {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 8rpx;
+}
+
+.host-order__phone-icon {
+	width: 34rpx;
+	height: 34rpx;
+}
+
+.host-top__avatar {
+	width: 45rpx;
+	height: 41rpx;
+	border-radius: 4rpx;
+	margin-right: 10rpx;
+}
+
+.host-top__switch-label {
+	font-size: 26rpx;
+	color: #FFFFFF;
+	margin-right: 15rpx;
+}
+
+.host-pair__label {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--h-text);
+}
+
+.host-pair__val {
+	font-size: 42rpx;
+	font-weight: 600;
+	color: var(--h-text);
+	margin-top: 6rpx;
+}
+
+.host-pair__val-sub {
+	font-size: 24rpx;
+	font-weight: 400;
+}
+
+.host-pair__arrow {
+	width: 40rpx;
+	height: 40rpx;
+}
+
+.host-panel__stat-val {
+	font-size: 42rpx;
+	font-weight: 600;
+	color: var(--h-text);
+}
+
+.host-panel__stat-label {
+	font-size: 24rpx;
+	color: var(--h-text-2);
+	margin-top: 6rpx;
+}
+
+.host-panel__add {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.host-user-head {
+	padding: 48rpx 28rpx;
+}
+
+.host-user-head__avatar {
+	width: 97rpx;
+	height: 97rpx;
+	border-radius: 50%;
+	margin-right: 10rpx;
+}
+
+.host-user-head__name {
+	font-size: 32rpx;
+	font-weight: 600;
+	color: var(--h-text);
+}
+
+.host-spacer {
+	height: 180rpx;
+}
+
+.host-room__head {
+	display: flex;
+	align-items: center;
+	gap: 12rpx;
+}
+
+.host-room__type {
+	display: inline-block;
+	padding: 4rpx 12rpx;
+	background: var(--h-brand-light);
+	color: var(--h-brand);
+	font-size: 22rpx;
+	border-radius: 6rpx;
+	margin-top: 8rpx;
+}
+
+.host-room__price-row {
+	display: flex;
+	align-items: baseline;
+	margin-top: 8rpx;
+}
+
+.host-price {
+	color: var(--g-price, #FB7185);
+	font-weight: 600;
+}
+
+.host-price__unit {
+	font-size: 24rpx;
+}
+
+.host-price__num {
+	font-size: 38rpx;
+}
+
+.host-vip {
+	display: flex;
+	align-items: center;
+	background: #F1E0CE;
+	border-radius: 4rpx;
+	height: 30rpx;
+	font-size: 20rpx;
+	margin-left: 10rpx;
+}
+
+.host-vip__badge {
+	background: linear-gradient(122deg, #1F1F1F 0%, #6B696C 46%, #0C0304 100%);
+	border-radius: 4rpx;
+	height: 30rpx;
+	padding: 0 8rpx;
+	color: #FFFFFF;
+	font-size: 20rpx;
+	line-height: 30rpx;
+}
+
+.host-vip__price {
+	padding: 0 6rpx 0 2rpx;
+	font-weight: 600;
+}
+
+.host-empty {
+	text-align: center;
+	margin-top: 80rpx;
+}
+
+.host-empty__img {
+	width: 340rpx;
+	height: 270rpx;
+}
+
+.host-empty__text {
+	font-size: 28rpx;
+	color: var(--h-text-2);
+	margin-top: -80rpx;
+}
+
+.host-scan__label {
+	font-size: 28rpx;
+	font-weight: 600;
+	color: var(--h-text);
+}
+
+.host-scan__row {
+	display: flex;
+	align-items: center;
+	gap: 20rpx;
+	margin-top: 24rpx;
+}
+
+.host-scan__input {
+	flex: 1;
+	padding: 8rpx 12rpx;
+	border: 1rpx solid var(--h-brand);
+	border-radius: var(--h-radius);
+	background: #FFFFFF;
+}
+
+.host-scan__tip {
+	margin-top: 18rpx;
+	font-size: 24rpx;
+	line-height: 1.7;
+	color: var(--h-text-2);
+}
+
+.host-foot--end {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.host-block .host-order,
+.host-block .host-order-card {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.host-block__head + .host-order,
+.host-block__head + .host-order-card {
+	margin-top: 0;
+}

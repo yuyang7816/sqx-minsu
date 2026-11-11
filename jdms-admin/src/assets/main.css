@@ -1,0 +1,162 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', Arial, sans-serif;
+}
+
+#app {
+	height: 100vh;
+}
+
+/* 通用样式 */
+.flex {
+	display: flex;
+}
+
+.basis-xs {
+	flex-basis: 20%;
+}
+
+.basis-sm {
+	flex-basis: 40%;
+}
+
+.basis-df {
+	flex-basis: 50%;
+}
+
+.basis-lg {
+	flex-basis: 60%;
+}
+
+.basis-xl {
+	flex-basis: 80%;
+}
+
+.flex-sub {
+	flex: 1;
+}
+
+.flex-twice {
+	flex: 2;
+}
+
+.flex-treble {
+	flex: 3;
+}
+
+.flex-direction {
+	flex-direction: column;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+.align-start {
+	align-items: flex-start;
+}
+
+.align-end {
+	align-items: flex-end;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.align-stretch {
+	align-items: stretch;
+}
+
+.self-start {
+	align-self: flex-start;
+}
+
+.self-center {
+	align-self: flex-center;
+}
+
+.self-end {
+	align-self: flex-end;
+}
+
+.self-stretch {
+	align-self: stretch;
+}
+
+.align-stretch {
+	align-items: stretch;
+}
+
+.justify-start {
+	justify-content: flex-start;
+}
+
+.justify-end {
+	justify-content: flex-end;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.justify-around {
+	justify-content: space-around;
+}
+
+/* margin跟padding间距 */
+/* 外边距 */
+.margin-top {
+	margin-top: 30px;
+}
+
+.margin-top-sm {
+	margin-top: 20px;
+}
+
+.margin-top-xs {
+	margin-top: 10px;
+}
+
+.margin-xs {
+	margin: 20px;
+}
+
+.margin-sm {
+	margin: 30px;
+}
+
+.margin-md {
+	margin: 40px;
+}
+
+.margin-lg {
+	margin: 50px;
+}
+
+
+/* 内边距 */
+.padding-xs {
+	padding: 20px;
+}
+
+.padding-sm {
+	padding: 30px;
+}
+
+.padding-md {
+	padding: 40px;
+}
+
+.padding-lg {
+	padding: 50px;
+}

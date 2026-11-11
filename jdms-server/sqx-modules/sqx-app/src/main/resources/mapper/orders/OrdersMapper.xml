@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqx.app.base.orders.dao.OrdersDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqx.app.base.orders.entity.Orders">
+        <id column="orderId" property="orderId"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_phone" property="userPhone"/>
+        <result column="shop_id" property="shopId"/>
+        <result column="room_id" property="roomId"/>
+        <result column="room_count" property="roomCount"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="real_name" property="realName"/>
+        <result column="phone" property="phone"/>
+        <result column="order_status" property="orderStatus"/>
+        <result column="coupon_id" property="couponId"/>
+        <result column="coupon_money" property="couponMoney"/>
+        <result column="order_money" property="orderMoney"/>
+        <result column="pay_money" property="payMoney"/>
+        <result column="user_scale_user_id" property="userScaleUserId"/>
+        <result column="user_scale_money" property="userScaleMoney"/>
+        <result column="user_two_user_id" property="userTwoUserId"/>
+        <result column="user_two_money" property="userTwoMoney"/>
+        <result column="create_time" property="createTime"/>
+        <result column="pay_time" property="payTime"/>
+    </resultMap>
+    <select id="getMyOrderList" resultType="com.sqx.app.base.orders.vo.OrderVo">
+        SELECT
+        o.*,
+        IFNULL((SELECT
+        GROUP_CONCAT(title)
+        FROM
+        room_device_classify c
+        WHERE FIND_IN_SET(c.classify_id, r.classify_ids)),"暂未填写") AS classifyName
+        FROM
+        orders o,
+        `shops_room` r
+        <where>
+            o.`room_id` = r.`room_id`
+            <if test="orderVo.userId!=null">
+                and o.user_id = #{orderVo.userId}
+            </if>
+            <if test="orderVo.orderStatus!=null">
+                and o.order_status = #{orderVo.orderStatus}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+    <select id="getMyOrderInfo" resultType="com.sqx.app.base.orders.vo.OrderVo">
+        SELECT o.*,
+               IFNULL(
+                       (SELECT GROUP_CONCAT(title)
+                        FROM room_device_classify c
+                        WHERE FIND_IN_SET(c.classify_id, r.classify_ids)),
+                       "暂未填写"
+                   ) AS classifyName
+        FROM orders o,
+             `shops_room` r
+        WHERE o.`room_id` = r.`room_id`
+          AND o.order_id = #{orderId}
+    </select>
+    <select id="getOrderList" resultType="com.sqx.app.base.orders.vo.OrderVo">
+        SELECT
+        o.*,
+        IFNULL((SELECT
+        GROUP_CONCAT(title)
+        FROM
+        room_device_classify c
+        WHERE FIND_IN_SET(c.classify_id, r.classify_ids)),"暂未填写") AS classifyName
+        FROM
+        orders o,
+        `shops_room` r,
+        tb_user u
+        <where>
+            o.`room_id` = r.`room_id` and u.user_id = o.user_id
+            <if test="orderVo.userId!=null">
+                and o.user_id = #{orderVo.userId}
+            </if>
+            <if test="orderVo.orderStatus!=null">
+                and o.order_status = #{orderVo.orderStatus}
+            </if>
+            <if test="orderVo.shopName!=null and orderVo.shopName!=''">
+                and shop_name like concat("%",#{orderVo.shopName})
+            </if>
+            <if test="orderVo.userPhone!=null and orderVo.userPhone!=''">
+                and u.phone like concat("%",#{orderVo.userPhone},"%")
+            </if>
+            <if test="orderVo.orderNumber!=null and orderVo.orderNumber!=''">
+                and o.order_number like concat("%",#{orderVo.orderNumber},"%")
+            </if>
+        </where>
+        order by create_time desc
+
+    </select>
+    <select id="selectOrdersCount" resultType="java.lang.Integer">
+        select count(0) from orders o where 1=1
+        <if test="orderStatus!=null">
+            and o.order_status = #{orderStatus}
+        </if>
+        <if test="flag!=null and flag==1">
+            and date_format(o.create_time,'%Y-%m-%d')=date_format(#{time},'%Y-%m-%d')
+        </if>
+        <if test="flag!=null and flag==2">
+            and date_format(o.create_time,'%Y-%m')=date_format(#{time},'%Y-%m')
+        </if>
+        <if test="flag!=null and flag==3">
+            and date_format(o.create_time,'%Y')=date_format(#{time},'%Y')
+        </if>
+    </select>
+    <select id="selectOrdersMoney" resultType="java.math.BigDecimal">
+        select ifnull(sum(pay_money),0) from orders o where 1=1
+        <if test="orderStatus!=null">
+            and o.order_status = #{orderStatus}
+        </if>
+        <if test="flag!=null and flag==1">
+            and date_format(o.create_time,'%Y-%m-%d')=date_format(#{time},'%Y-%m-%d')
+        </if>
+        <if test="flag!=null and flag==2">
+            and date_format(o.create_time,'%Y-%m')=date_format(#{time},'%Y-%m')
+        </if>
+        <if test="flag!=null and flag==3">
+            and date_format(o.create_time,'%Y')=date_format(#{time},'%Y')
+        </if>
+    </select>
+    <select id="selectOrdersMoney1" resultType="java.math.BigDecimal">
+<!--         select ifnull(sum(pay_money-refund_money),0) from orders o where 1=1 -->
+        select ifnull(sum(refund_money),0) from orders o where 1=1
+        <if test="orderStatus!=null">
+            and o.order_status = #{orderStatus}
+        </if>
+        <if test="flag!=null and flag==1">
+            and date_format(o.create_time,'%Y-%m-%d')=date_format(#{time},'%Y-%m-%d')
+        </if>
+        <if test="flag!=null and flag==2">
+            and date_format(o.create_time,'%Y-%m')=date_format(#{time},'%Y-%m')
+        </if>
+        <if test="flag!=null and flag==3">
+            and date_format(o.create_time,'%Y')=date_format(#{time},'%Y')
+        </if>
+    </select>
+
+    <select id="selectOrderTrend" resultType="java.util.HashMap">
+        SELECT
+            DATE_FORMAT(create_time, '%Y-%m-%d') AS date,
+            COUNT(*) AS orderCount,
+            IFNULL(SUM(pay_money), 0) AS orderAmount,
+            IFNULL(SUM(platform_money), 0) AS platformIncome
+        FROM orders
+        WHERE DATE_FORMAT(create_time, '%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+        GROUP BY DATE_FORMAT(create_time, '%Y-%m-%d')
+        ORDER BY DATE_FORMAT(create_time, '%Y-%m-%d')
+    </select>
+
+    <select id="selectOrderStatusDistribution" resultType="java.util.HashMap">
+        SELECT
+            order_status AS status,
+            COUNT(*) AS count
+        FROM orders
+        WHERE DATE_FORMAT(create_time, '%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+        GROUP BY order_status
+        ORDER BY order_status
+    </select>
+
+    <select id="selectTodayOrderCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM orders
+        WHERE DATE_FORMAT(create_time, '%Y-%m-%d') = DATE_FORMAT(#{time}, '%Y-%m-%d')
+    </select>
+
+</mapper>

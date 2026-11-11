@@ -1,0 +1,688 @@
+{
+  "planMeta": {
+    "projectName": "hotel_jiudianminsu",
+    "projectType": "uni-app 酒店民宿双端（用户端 + 商家端）",
+    "planVersion": "1.0.0",
+    "createdAt": "2026-07-16",
+    "authorRole": ["高级UI设计师", "高级产品经理"],
+    "designCodename": "Azure Stay · 温润入住",
+    "constraint": "仅改 template / style，不改接口、跳转、支付、地图、核销等业务逻辑",
+    "cssArchitecture": {
+      "loadOrder": [
+        "uni_modules/uview-plus/index.scss",
+        "static/css/main.css",
+        "style/main.scss",
+        "static/css/guest.css",
+        "static/css/host.css",
+        "static/css/theme-soft.css"
+      ],
+      "namingSpace": {
+        "guest": "用户端 guest-*",
+        "host": "商家端 host-*",
+        "pageLocal": "页面专属前缀 hd-* / rl-* / home-*（仅局部布局）"
+      },
+      "deprecated": ["plat-*", "tk-*", "platform.css", "toolkit.css"]
+    }
+  },
+
+  "productVision": {
+    "oneLiner": "像预订一间舒适民宿一样轻松——轻、柔、留白足、边框细、渐变温润",
+    "userEmotion": ["安心", "放松", "被欢迎", "不被打扰"],
+    "antiPatterns": [
+      "管理后台式左标签右输入表格",
+      "厚重卡片阴影与粗黑字重",
+      "商城促销红与硬直角",
+      "信息密度过高的 B 端表格感",
+      "无引导语的裸表单"
+    ],
+    "coreJourneys": [
+      {
+        "id": "J1",
+        "name": "发现与预订",
+        "path": "首页 → 搜索 → 详情 → 房型 → 确认订单 → 支付",
+        "priority": "P0"
+      },
+      {
+        "id": "J2",
+        "name": "订单履约",
+        "path": "订单列表 → 订单详情 → 评价 / 开票",
+        "priority": "P0"
+      },
+      {
+        "id": "J3",
+        "name": "账户与资产",
+        "path": "我的 → 钱包 / 会员 / 优惠券 / 设置",
+        "priority": "P1"
+      },
+      {
+        "id": "J4",
+        "name": "商家经营",
+        "path": "商家中心 → 订单核销 → 房源管理 → 员工协作 → 商家钱包",
+        "priority": "P1"
+      }
+    ]
+  },
+
+  "designTokens": {
+    "brand": {
+      "primary": "#2C8EFE",
+      "primaryDark": "#3B8FE8",
+      "primaryLight": "#EBF4FF",
+      "primarySoft": "#F4F9FF",
+      "gradientHero": "linear-gradient(165deg, #6BB3FE 0%, #2C8EFE 38%, #EBF4FF 100%)",
+      "gradientBtn": "linear-gradient(135deg, #7EBAFF 0%, #2C8EFE 100%)",
+      "gradientAuthBg": "linear-gradient(180deg, #EBF4FF 0%, #F6F8FB 42%, #FFFFFF 100%)"
+    },
+    "neutral": {
+      "pageBg": "#F6F8FB",
+      "surface": "#FFFFFF",
+      "muted": "#F3F6FA",
+      "border": "#EEF1F6",
+      "textPrimary": "#334155",
+      "textSecondary": "#94A3B8",
+      "textDisabled": "#CBD5E1",
+      "mask": "rgba(51, 65, 85, 0.35)"
+    },
+    "semantic": {
+      "price": "#FB7185",
+      "success": "#5AC725",
+      "warning": "#F9AE3D",
+      "error": "#FB7185"
+    },
+    "typography": {
+      "fontFamily": "系统默认 sans-serif",
+      "weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": "禁用，统一降级为 600"
+      },
+      "scale": {
+        "caption": "22rpx",
+        "body": "28rpx",
+        "subtitle": "30rpx",
+        "title": "36rpx",
+        "hero": "40rpx",
+        "priceLarge": "64rpx"
+      },
+      "lineHeight": {
+        "tight": 1.35,
+        "normal": 1.55,
+        "loose": 1.75
+      }
+    },
+    "spacing": {
+      "pagePaddingX": "28rpx",
+      "sectionGap": "24rpx",
+      "cardPadding": "28rpx",
+      "fieldPaddingY": "26rpx",
+      "safeAreaBottom": "env(safe-area-inset-bottom)"
+    },
+    "radius": {
+      "sm": "16rpx",
+      "md": "24rpx",
+      "lg": "32rpx",
+      "pill": "999rpx"
+    },
+    "elevation": {
+      "default": "none",
+      "logoSoft": "0 6rpx 24rpx rgba(44, 142, 254, 0.05)",
+      "rule": "卡片一律无阴影，仅用 1rpx 细边框"
+    }
+  },
+
+  "layoutTemplates": {
+    "T1_heroFloat": {
+      "desc": "渐变头区 + 浮层白卡（首页/我的）",
+      "structure": ["guest-hero", "guest-search / guest-card 负 margin 上浮"],
+      "usage": ["pages/index/index", "pages/my/index"]
+    },
+    "T2_feedList": {
+      "desc": "信息流列表，白底 + 分割线，无卡片阴影",
+      "structure": ["section-head", "list-item + divider"],
+      "usage": ["pages/index/search", "subpackage/hotel/roomList", "subpackage/hotel/hotelDetail"]
+    },
+    "T3_tabList": {
+      "desc": "顶部分段 + 列表（订单/筛选）",
+      "structure": ["guest-sticky tabs", "guest-order-card / guest-list-card"],
+      "usage": ["pages/order/index", "shopCenter/order/index"]
+    },
+    "T4_detailFlow": {
+      "desc": "详情纵向信息流 + 底部固定操作栏",
+      "structure": ["media", "info-blocks", "guest-fixed-foot"],
+      "usage": ["subpackage/hotel/hotelDetail", "subpackage/hotel/roomDetail", "subpackage/order/orderDetail"]
+    },
+    "T5_formStay": {
+      "desc": "住宿感表单（非后台表格）",
+      "structure": ["guest-auth__head 或 guest-form-head", "guest-stay-form", "guest-btn 提交"],
+      "usage": "所有填写类页面，见 formDesignSystem"
+    },
+    "T6_hostConsole": {
+      "desc": "商家工作台：数据顶栏 + 面板网格",
+      "structure": ["host-top", "host-metrics", "host-panel grid"],
+      "usage": ["shopCenter/index/index"]
+    },
+    "T7_hostTool": {
+      "desc": "商家工具页：密度略高但仍保持细边框无阴影",
+      "structure": ["host-block", "host-order-card", "host-foot"],
+      "usage": ["shopCenter/order/*", "shopCenter/rooms/*", "shopCenter/employee/*"]
+    }
+  },
+
+  "formDesignSystem": {
+    "philosophy": "表单是「填写入住信息」，不是「录入系统数据」",
+    "principles": [
+      "去掉左侧固定标签列，改用 placeholder + 顶部轻提示语",
+      "一屏一个意图：标题说明「为什么填」",
+      "字段之间用细分割线，不用表格边框",
+      "必填不标红星暴力提示，用柔和 helper text",
+      "提交按钮使用胶囊渐变，与页面留白形成呼吸感",
+      "商家端表单同样禁止 B 端表格化，仅允许信息密度略高"
+    ],
+    "patterns": {
+      "guest-auth": {
+        "适用": "账号类：登录 / 注册 / 忘记密码 / 改密",
+        "结构": ["Logo", "标题", "hint", "guest-auth__form（无边框阴影）", "主按钮", "底部链接"],
+        "status": "已落地",
+        "files": [
+          "pages/public/loginphone.vue",
+          "pages/public/register.vue",
+          "pages/public/forgetPwd.vue"
+        ]
+      },
+      "guest-stay-form": {
+        "适用": "交易与个人信息类表单",
+        "结构": [
+          "guest-form-head（图标/标题/一句引导）",
+          "guest-stay-form（白底圆角容器）",
+          "guest-stay-field（仅底部分割线）",
+          "guest-stay-field__hint（可选）",
+          "guest-fixed-foot 或 guest-btn 提交"
+        ],
+        "fieldRules": {
+          "labelPosition": "none 或 field 内顶部小字",
+          "inputStyle": "无边框，placeholder #94A3B8",
+          "selectStyle": "右箭头 + 值右对齐",
+          "textareaStyle": "最小高度 160rpx，圆角 muted 背景"
+        },
+        "status": "待新建 CSS 并批量迁移",
+        "targetFiles": [
+          "pages/my/userInfo.vue",
+          "my/cyMsg/index.vue",
+          "my/feedback/index.vue",
+          "subpackage/hotel/comfirOrder.vue",
+          "subpackage/invoice/kaipiao.vue",
+          "subpackage/invoice/Invoicing.vue",
+          "my/wallet/recharge.vue",
+          "my/wallet/cash.vue",
+          "my/wallet/zhifubao.vue",
+          "my/shopRz/index.vue",
+          "my/shopRz/shopCheck.vue",
+          "package/setting/upPwd.vue"
+        ]
+      },
+      "host-lite-form": {
+        "适用": "商家录入：房源 / 员工 / 认证",
+        "结构": [
+          "host-form-head",
+          "host-lite-form",
+          "host-lite-field",
+          "host-btn 提交"
+        ],
+        "差异": "字段间距略紧凑，但仍无左标签列",
+        "status": "待新建 CSS 并迁移",
+        "targetFiles": [
+          "shopCenter/rooms/addRoom.vue",
+          "shopCenter/employee/addEmployee.vue",
+          "shopCenter/index/renzheng.vue"
+        ]
+      },
+      "guest-picker-sheet": {
+        "适用": "日期 / 城市 / 支付方式 / 优惠券选择",
+        "structure": "底部弹层 + 胶囊选项，不用原生硬表格",
+        "components": ["guest-chip", "guest-pay-opt", "home-search__tab"]
+      }
+    },
+    "forbiddenPatterns": [
+      "u-cell-group + 左 label 120rpx 右 input 后台布局",
+      "每行灰色背景 + 粗边框表格",
+      "required 红星 + 密集字段无分组",
+      "提交按钮贴边无 safe-area",
+      "表单页纯白底无任何品牌渐变过渡"
+    ]
+  },
+
+  "componentLibrary": {
+    "guest": {
+      "layout": ["guest-page", "guest-hero", "guest-sticky", "guest-fixed-foot"],
+      "surface": ["guest-card", "guest-info-card", "guest-list-card", "guest-menu"],
+      "action": ["guest-btn", "guest-btn--ghost", "guest-btn--muted", "guest-logout"],
+      "data": ["guest-order-card", "guest-hotel", "guest-badge", "guest-tag", "guest-chip"],
+      "form": ["guest-auth", "guest-form-block", "guest-field", "guest-pay-opt", "guest-stay-form（待建）"],
+      "state": ["guest-empty", "guest-tab", "guest-price"]
+    },
+    "host": {
+      "layout": ["host-page", "host-top", "host-sticky", "host-foot"],
+      "surface": ["host-panel", "host-card", "host-metrics", "host-pair"],
+      "action": ["host-btn", "host-btn--ghost"],
+      "data": ["host-order-card", "host-room", "host-block"],
+      "form": ["host-lite-form（待建）"]
+    },
+    "pageLocal": {
+      "home-search": "首页搜索浮层",
+      "hd-*": "酒店详情信息流",
+      "rl-*": "房型列表轻量项"
+    }
+  },
+
+  "executionPhases": [
+    {
+      "phase": 0,
+      "name": "设计基座（已完成）",
+      "status": "done",
+      "deliverables": [
+        "guest.css / host.css / theme-soft.css 三层体系",
+        "App.vue 引入与 page 背景 #F6F8FB",
+        "pages.json globalStyle / tabBar 配色",
+        "uview-plus / uni.scss token 软化"
+      ]
+    },
+    {
+      "phase": 1,
+      "name": "核心交易链路抛光",
+      "status": "in_progress",
+      "priority": "P0",
+      "durationEstimate": "3-5 天",
+      "tasks": [
+        {
+          "id": "P1-1",
+          "page": "pages/index/index.vue",
+          "template": "T1_heroFloat",
+          "action": "搜索模块 home-search 浮层、日期「共N晚」、去阴影",
+          "status": "done"
+        },
+        {
+          "id": "P1-2",
+          "page": "pages/index/search.vue",
+          "template": "T2_feedList",
+          "action": "列表项轻量化、筛选面板胶囊化",
+          "status": "done"
+        },
+        {
+          "id": "P1-3",
+          "page": "subpackage/hotel/hotelDetail.vue",
+          "template": "T2_feedList",
+          "action": "hd-* 信息流，去 guest-card 多层嵌套",
+          "status": "done"
+        },
+        {
+          "id": "P1-4",
+          "page": "subpackage/hotel/roomList.vue",
+          "template": "T2_feedList",
+          "action": "rl-* 列表，修复顶栏重复 border",
+          "status": "done"
+        },
+        {
+          "id": "P1-5",
+          "page": "subpackage/hotel/roomDetail.vue",
+          "template": "T4_detailFlow",
+          "action": "详情信息流 + 底部预订栏统一",
+          "status": "todo"
+        },
+        {
+          "id": "P1-6",
+          "page": "subpackage/hotel/comfirOrder.vue",
+          "template": "T5_formStay",
+          "action": "入住人/联系方式改为 guest-stay-form，优惠券/发票区块软化",
+          "status": "todo",
+          "note": "核心转化页，表单体验优先级最高"
+        },
+        {
+          "id": "P1-7",
+          "page": "subpackage/order/orderDetail.vue",
+          "template": "T4_detailFlow",
+          "action": "状态头图 + 信息分组，去除 scoped 硬编码色",
+          "status": "partial"
+        }
+      ],
+      "acceptance": [
+        "首页到下单全程无 box-shadow",
+        "确认订单页无左标签列表格感",
+        "价格色统一 #FB7185"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "表单体验专项（重点）",
+      "status": "todo",
+      "priority": "P0",
+      "durationEstimate": "4-6 天",
+      "tasks": [
+        {
+          "id": "P2-0",
+          "action": "在 guest.css 新建 guest-stay-form / guest-stay-field / guest-form-head 组件",
+          "status": "todo"
+        },
+        {
+          "id": "P2-1",
+          "group": "个人信息",
+          "pages": ["pages/my/userInfo.vue", "my/cyMsg/index.vue"],
+          "pattern": "guest-stay-form",
+          "copyGuideline": "标题「完善资料，预订更顺畅」+ placeholder 引导"
+        },
+        {
+          "id": "P2-2",
+          "group": "钱包资产",
+          "pages": ["my/wallet/recharge.vue", "my/wallet/cash.vue", "my/wallet/zhifubao.vue"],
+          "pattern": "guest-stay-form",
+          "copyGuideline": "金额选择用 guest-money-pick 胶囊，输入框仅补充金额"
+        },
+        {
+          "id": "P2-3",
+          "group": "发票",
+          "pages": ["subpackage/invoice/kaipiao.vue", "subpackage/invoice/Invoicing.vue"],
+          "pattern": "guest-stay-form",
+          "copyGuideline": "抬头类型用 guest-chip 切换，字段分组「开票信息」「接收方式」"
+        },
+        {
+          "id": "P2-4",
+          "group": "商家入驻",
+          "pages": ["my/shopRz/index.vue", "my/shopRz/shopCheck.vue"],
+          "pattern": "guest-stay-form",
+          "copyGuideline": "分步感：进度提示 + 每组最多 4 字段"
+        },
+        {
+          "id": "P2-5",
+          "group": "商家录入",
+          "pages": ["shopCenter/rooms/addRoom.vue", "shopCenter/employee/addEmployee.vue", "shopCenter/index/renzheng.vue"],
+          "pattern": "host-lite-form",
+          "note": "在 host.css 同步新建 host-lite-form 系列"
+        },
+        {
+          "id": "P2-6",
+          "group": "反馈与设置",
+          "pages": ["my/feedback/index.vue", "package/setting/upPwd.vue", "package/setting/logOff.vue"],
+          "pattern": "guest-stay-form"
+        }
+      ],
+      "acceptance": [
+        "所有表单页禁止出现左标签列宽 >= 160rpx",
+        "每页至少有 1 句用户向引导语",
+        "textarea 页面背景带 #EBF4FF 顶部渐变",
+        "提交按钮距底部 safe-area >= 40rpx"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "用户中心与资产页",
+      "status": "partial",
+      "priority": "P1",
+      "durationEstimate": "3-4 天",
+      "pages": [
+        { "path": "pages/my/index.vue", "status": "done", "template": "T1_heroFloat" },
+        { "path": "pages/order/index.vue", "status": "done", "template": "T3_tabList" },
+        { "path": "my/wallet/wallet.vue", "status": "done", "template": "T1_heroFloat" },
+        { "path": "my/collection/collection.vue", "status": "done", "template": "T2_feedList" },
+        { "path": "my/footprint/footprint.vue", "status": "done", "template": "T2_feedList" },
+        { "path": "my/vip/index.vue", "status": "todo", "note": "会员页仍有 font-weight:bold，需整体软化" },
+        { "path": "my/ticket/ticket.vue", "status": "partial", "note": "优惠券卡片圆角胶囊化" },
+        { "path": "pages/my/invitationUser.vue", "status": "partial", "note": "邀请海报区渐变头" },
+        { "path": "package/team/team.vue", "status": "partial" },
+        { "path": "package/team/earnings.vue", "status": "partial" }
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "商家端工作台",
+      "status": "partial",
+      "priority": "P1",
+      "durationEstimate": "3-4 天",
+      "pages": [
+        { "path": "shopCenter/index/index.vue", "status": "done", "template": "T6_hostConsole" },
+        { "path": "shopCenter/order/index.vue", "status": "done" },
+        { "path": "shopCenter/order/orderDetail.vue", "status": "partial" },
+        { "path": "shopCenter/order/sacnCode.vue", "status": "partial", "note": "核销页强调操作按钮，保持大留白" },
+        { "path": "shopCenter/rooms/roomsList.vue", "status": "done" },
+        { "path": "shopCenter/employee/indexList.vue", "status": "done" },
+        { "path": "shopCenter/wallet/index.vue", "status": "partial" },
+        { "path": "shopCenter/myPosts/index.vue", "status": "done" }
+      ],
+      "globalFix": {
+        "path": "pages.json",
+        "item": "shopCenter/index/index navigationBarBackgroundColor #4F75FB → #2C8EFE"
+      }
+    },
+    {
+      "phase": 5,
+      "name": "全局清扫与验收",
+      "status": "todo",
+      "priority": "P2",
+      "durationEstimate": "2-3 天",
+      "tasks": [
+        "grep 清理 #111827 / #EF4444 / font-weight:700 / box-shadow 硬编码",
+        "删除或归档 shopCenter/index/index - 副本.vue 等副本文件",
+        "package/setting 协议页统一阅读态排版（无表单）",
+        "pages/index/citys 与 uni-city-list 品牌化",
+        "三端实机验收：微信小程序 / H5 / App"
+      ],
+      "grepPatterns": [
+        "#111827",
+        "#EF4444",
+        "font-weight:\\s*700",
+        "font-weight:\\s*bold",
+        "box-shadow:\\s*0"
+      ]
+    }
+  ],
+
+  "pageInventory": {
+    "totalRegisteredPages": 62,
+    "excludeFromScope": [
+      "shopCenter/index/index - 副本.vue",
+      "shopCenter/myPosts/index - 副本.vue",
+      "pages/webView/webView.vue"
+    ],
+    "groups": [
+      {
+        "groupId": "G01",
+        "name": "Tab 根页",
+        "pages": [
+          { "path": "pages/index/index", "status": "done", "template": "T1_heroFloat" },
+          { "path": "pages/order/index", "status": "done", "template": "T3_tabList" },
+          { "path": "pages/my/index", "status": "done", "template": "T1_heroFloat" }
+        ]
+      },
+      {
+        "groupId": "G02",
+        "name": "交易链路",
+        "pages": [
+          { "path": "pages/index/search", "status": "done" },
+          { "path": "subpackage/hotel/hotelDetail", "status": "done" },
+          { "path": "subpackage/hotel/roomList", "status": "done" },
+          { "path": "subpackage/hotel/roomDetail", "status": "todo" },
+          { "path": "subpackage/hotel/comfirOrder", "status": "todo", "formPattern": "guest-stay-form" },
+          { "path": "subpackage/hotel/commentList", "status": "partial" },
+          { "path": "subpackage/order/orderDetail", "status": "partial" },
+          { "path": "subpackage/order/evaluate", "status": "partial", "formPattern": "guest-stay-form" }
+        ]
+      },
+      {
+        "groupId": "G03",
+        "name": "账号认证",
+        "pages": [
+          { "path": "pages/public/login", "status": "done" },
+          { "path": "pages/public/loginphone", "status": "done", "formPattern": "guest-auth" },
+          { "path": "pages/public/register", "status": "done", "formPattern": "guest-auth" },
+          { "path": "pages/public/forgetPwd", "status": "done", "formPattern": "guest-auth" }
+        ]
+      },
+      {
+        "groupId": "G04",
+        "name": "表单填写（重点改造）",
+        "pages": [
+          { "path": "pages/my/userInfo", "status": "todo", "formPattern": "guest-stay-form" },
+          { "path": "my/cyMsg/index", "status": "todo", "formPattern": "guest-stay-form" },
+          { "path": "my/feedback/index", "status": "todo", "formPattern": "guest-stay-form" },
+          { "path": "subpackage/invoice/kaipiao", "status": "todo", "formPattern": "guest-stay-form" },
+          { "path": "subpackage/invoice/Invoicing", "status": "partial", "formPattern": "guest-stay-form" },
+          { "path": "my/wallet/recharge", "status": "partial", "formPattern": "guest-stay-form" },
+          { "path": "my/wallet/cash", "status": "partial", "formPattern": "guest-stay-form" },
+          { "path": "my/wallet/zhifubao", "status": "todo", "formPattern": "guest-stay-form" },
+          { "path": "my/shopRz/index", "status": "partial", "formPattern": "guest-stay-form" },
+          { "path": "my/shopRz/shopCheck", "status": "partial", "formPattern": "guest-stay-form" },
+          { "path": "package/setting/upPwd", "status": "partial", "formPattern": "guest-auth" },
+          { "path": "shopCenter/rooms/addRoom", "status": "todo", "formPattern": "host-lite-form" },
+          { "path": "shopCenter/employee/addEmployee", "status": "todo", "formPattern": "host-lite-form" },
+          { "path": "shopCenter/index/renzheng", "status": "todo", "formPattern": "host-lite-form" }
+        ]
+      },
+      {
+        "groupId": "G05",
+        "name": "商家端",
+        "pages": [
+          { "path": "shopCenter/index/index", "status": "done" },
+          { "path": "shopCenter/order/index", "status": "done" },
+          { "path": "shopCenter/order/orderDetail", "status": "partial" },
+          { "path": "shopCenter/order/sacnCode", "status": "partial" },
+          { "path": "shopCenter/rooms/roomsList", "status": "done" },
+          { "path": "shopCenter/employee/indexList", "status": "done" },
+          { "path": "shopCenter/employee/serviceList", "status": "done" },
+          { "path": "shopCenter/employee/timeList", "status": "partial" },
+          { "path": "shopCenter/wallet/index", "status": "partial" },
+          { "path": "shopCenter/myPosts/index", "status": "done" }
+        ]
+      }
+    ]
+  },
+
+  "copywritingGuidelines": {
+    "tone": "温和、简洁、像前台接待而非系统通知",
+    "examples": {
+      "formTitle": {
+        "bad": "填写信息",
+        "good": "告诉我们要怎么联系您"
+      },
+      "placeholder": {
+        "bad": "请输入姓名",
+        "good": "您的真实姓名（与证件一致）"
+      },
+      "submit": {
+        "bad": "提交",
+        "good": "确认预订 / 保存信息 / 申请开票"
+      },
+      "empty": {
+        "bad": "暂无数据",
+        "good": "还没有订单，去挑一家心仪民宿吧"
+      }
+    }
+  },
+
+  "qualityChecklist": {
+    "visual": [
+      "页面背景 #F6F8FB，卡片 #FFFFFF + #EEF1F6 边框",
+      "无 box-shadow（Logo 除外且仅 g-shadow-soft）",
+      "主字重不超过 600",
+      "价格/错误色 #FB7185，非 #EF4444",
+      "按钮渐变 #7EBAFF → #2C8EFE，圆角 pill"
+    ],
+    "form": [
+      "无左标签列宽表格布局",
+      "每表单页有标题 + 至少一句 hint",
+      "字段间距 >= 26rpx",
+      "底部提交区有 safe-area",
+      "picker 类字段右对齐 + chevron"
+    ],
+    "product": [
+      "核心链路 3 步内可达下单",
+      "表单字段数可见分组，单组 <= 5 项",
+      "空态有行动引导（按钮或链接）",
+      "商家端效率不降：核销/订单列表信息密度可高于用户端"
+    ],
+    "technical": [
+      "仅改 template/style，script 业务逻辑零 diff",
+      "使用 guest-* / host-* 类名，不引入 plat-* / tk-*",
+      "scoped 样式不硬编码 #111827 / #EF4444",
+      "theme-soft.css 作为最后覆写层"
+    ]
+  },
+
+  "aiGenerationPromptTemplate": {
+    "system": "你是酒店民宿 uni-app 项目的 UI 工程师。遵循 Azure Stay 设计体系：轻、柔、留白足、边框细、渐变温润。只改 template 和 style，不改 script 业务逻辑。",
+    "userTaskFormat": {
+      "page": "页面路径",
+      "template": "布局模板 ID",
+      "formPattern": "guest-auth | guest-stay-form | host-lite-form | none",
+      "mustUseClasses": ["guest-page", "guest-stay-form"],
+      "forbidden": ["左标签表格", "box-shadow", "font-weight:700", "plat-*", "tk-*"],
+      "copyHint": "页面引导语"
+    },
+    "example": "请将 subpackage/hotel/comfirOrder.vue 按 T5_formStay 改造：入住人信息用 guest-stay-form，placeholder 引导，优惠券区块用 guest-chip，底部 guest-fixed-foot 预订按钮，不改任何接口与支付逻辑。"
+  },
+
+  "milestones": [
+    {
+      "milestone": "M1 · 能订能付",
+      "targetDate": "Phase 1 完成",
+      "criteria": ["首页→详情→确认订单视觉统一", "确认订单表单无后台感"]
+    },
+    {
+      "milestone": "M2 · 表单全柔",
+      "targetDate": "Phase 2 完成",
+      "criteria": ["14 个表单页全部迁移", "guest-stay-form / host-lite-form 组件入库"]
+    },
+    {
+      "milestone": "M3 · 双端一致",
+      "targetDate": "Phase 4 完成",
+      "criteria": ["用户端/商家端 token 统一", "商家端无旧色 #4F75FB"]
+    },
+    {
+      "milestone": "M4 · 可发布",
+      "targetDate": "Phase 5 完成",
+      "criteria": ["grep 零硬编码", "三端实机验收通过"]
+    }
+  ],
+
+  "riskAndMitigation": [
+    {
+      "risk": "uview 组件自带阴影/字重",
+      "mitigation": "theme-soft.css + :deep() 覆写，优先换 guest-* 自研结构"
+    },
+    {
+      "risk": "表单改 UI 误触业务字段绑定",
+      "mitigation": "只改 class 和外层 view 结构，v-model / @click 绑定名不变"
+    },
+    {
+      "risk": "商家端过度柔和影响效率",
+      "mitigation": "host 端允许略高密度，但禁止表格化；核销页按钮保持 96rpx 高"
+    }
+  ],
+
+  "nextActions": [
+    {
+      "priority": 1,
+      "action": "在 guest.css 新建 guest-stay-form 组件族",
+      "owner": "UI/Dev",
+      "blocks": ["Phase 2 全部表单迁移"]
+    },
+    {
+      "priority": 2,
+      "action": "改造 subpackage/hotel/comfirOrder.vue（核心转化表单）",
+      "owner": "UI/Dev"
+    },
+    {
+      "priority": 3,
+      "action": "改造 subpackage/hotel/roomDetail.vue + evaluate.vue",
+      "owner": "UI/Dev"
+    },
+    {
+      "priority": 4,
+      "action": "my/vip/index.vue 会员页整体软化",
+      "owner": "UI/Dev"
+    },
+    {
+      "priority": 5,
+      "action": "pages.json 商家中心导航栏色统一 #2C8EFE",
+      "owner": "Dev"
+    }
+  ]
+}

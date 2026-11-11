@@ -1,0 +1,96 @@
+.container {
+  min-height: 100vh;
+  background: $default-back;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-c {
+  display: flex;
+  flex-direction: column;
+}
+
+.jc {
+  justify-content: center;
+}
+
+.sb {
+  justify-content: space-between;
+}
+
+.se {
+  justify-content: space-evenly;
+}
+
+.sa {
+  justify-content: space-around;
+}
+
+.jce {
+  justify-content: flex-end;
+}
+
+.alic {
+  align-items: center;
+}
+
+.alie {
+  align-items: flex-end;
+}
+
+.alib {
+  align-items: baseline;
+}
+
+.alis {
+  align-items: flex-start;
+}
+
+.f {
+  color: #fff;
+}
+
+.bf {
+  background: #fff;
+}
+
+.ft {
+  color: $theme-color;
+}
+
+.bt {
+  background: $theme-color;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.active {
+  &:active {
+    filter: brightness(0.8);
+  }
+}
+
+.circle {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background-color: #F0F0F0;
+  color: #333;
+  @extend .flex, .jc, .alic;
+}
+
+.circle_active {
+  background: #5BEB9E !important;
+  color: #fff !important;
+}
+
+.circle_err {
+  background: #FE7A60 !important;
+  color: #fff !important;
+}

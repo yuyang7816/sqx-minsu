@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqx.app.base.shops.dao.TbFootprintDao">
+
+    <resultMap id="BaseResultMap" type="com.sqx.app.base.shops.entity.TbFootprint">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
+            <result property="visitTime" column="visit_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,shops_id,
+        visit_time
+    </sql>
+    <select id="selectByUserId" resultType="com.sqx.app.base.shops.entity.TbFootprint">
+<!--        select g.good_id as goodId,g.good_name as goodName,g.good_title as goodTitle,g.cover_img as coverImg,g.good_price as price,-->
+<!--               g.status as status,g.videos as videos,-->
+<!--               g.is_free_mail as isFreeMail,gt.type_name as typeName,lt.label as label,t.visit_time as visitTime from tb_footprint t-->
+<!--        left join goods g on t.good_id = g.good_id-->
+<!--        left join goods_type gt on g.type_id = gt.type_id-->
+<!--        left join label_type lt on g.label_id = lt.label_id-->
+<!--        where  t.user_id = #{userId}-->
+<!--          <if test="status != null">-->
+<!--            and g.`status` = #{status}-->
+<!--          </if>-->
+<!--        order by t.visit_time desc-->
+        SELECT
+        g.good_id AS goodId,
+        g.good_name AS goodName,
+        g.good_title AS goodTitle,
+        g.cover_img AS coverImg,
+        g.good_price AS price,
+        g.status AS status,
+        g.videos AS videos,
+        g.is_free_mail AS isFreeMail,
+        gt.type_name AS typeName,
+        lt.label AS label,
+        t.max_visit_time as visitTime
+        FROM
+        (SELECT DISTINCT good_id, MAX(visit_time) AS max_visit_time
+        FROM tb_footprint
+        WHERE user_id = #{userId}
+        GROUP BY good_id) t
+        JOIN
+        goods g ON t.good_id = g.good_id
+        LEFT JOIN
+        goods_type gt ON g.type_id = gt.type_id
+        LEFT JOIN
+        label_type lt ON g.label_id = lt.label_id
+         order by t.max_visit_time DESC
+    </select>
+    <select id="selectCountByGoodId" resultType="java.lang.Integer">
+        select COUNT(DISTINCT g.good_id)
+        from tb_footprint tf
+        left join goods g on tf.good_id = g.good_id
+        where tf.user_id = #{userId}
+    </select>
+</mapper>

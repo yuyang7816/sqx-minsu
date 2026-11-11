@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqx.app.base.shops.dao.ShopsDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqx.app.base.shops.entity.Shops">
+        <id column="shop_id" property="shopId"/>
+        <result column="shop_name" property="shopName"/>
+        <result column="title_img" property="titleImg"/>
+        <result column="carousel_url" property="carouselUrl"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="county" property="county"/>
+        <result column="address" property="address"/>
+        <result column="lng" property="lng"/>
+        <result column="lat" property="lat"/>
+        <result column="is_enable" property="isEnable"/>
+        <result column="score" property="score"/>
+        <result column="is_recommend" property="isRecommend"/>
+        <result column="tags" property="tags"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+    <select id="getAppShopList" resultType="com.sqx.app.base.shops.entity.Shops">
+        SELECT * FROM (SELECT
+        s.*,
+        IFNULL((SELECT MIN(money) FROM shops_room r WHERE r.shop_id = s.shop_id AND r.is_enable = 1), 0) AS minMoney,
+        (SELECT COUNT(0) FROM shops_room r WHERE r.shop_id = s.shop_id AND r.is_enable = 1) AS roomCount,
+        (SELECT COUNT(0) FROM orders o WHERE o.shop_id = s.shop_id AND o.order_status = 3) AS orderCount
+        <choose>
+            <when test="shops.lng != null and shops.lat != null">
+                ,(st_distance(point(s.lng, s.lat), point(#{shops.lng}, #{shops.lat})) * 111195) AS distance
+            </when>
+            <otherwise>
+                ,NULL AS distance
+            </otherwise>
+        </choose>
+        FROM shops s
+        WHERE s.is_enable = 1 and s.audit_status = 1
+        <if test="shops.shopName != null and shops.shopName != ''">
+            and s.shop_name like concat('%', #{shops.shopName}, '%')
+        </if>
+        <if test="shops.city != null and shops.city != ''">
+            and s.city like concat('%', #{shops.city}, '%')
+        </if>
+        <if test="shops.isRecommend != null">
+            and s.is_recommend = #{shops.isRecommend}
+        </if>
+        <if test="shops.shopType != null">
+            and s.shop_type = #{shops.shopType}
+        </if>
+        <if test="shops.hasHourlyRoom != null and shops.hasHourlyRoom == 1">
+            and exists (
+                select 1 from shops_room r
+                left join shops_room_type rt on r.room_type_id = rt.id
+                where r.shop_id = s.shop_id
+                  and r.is_enable = 1
+                  and (
+                      r.room_type like concat('%', '钟点', '%')
+                      or rt.type_name like concat('%', '钟点', '%')
+                  )
+            )
+        </if>
+        <if test="startTime != null">
+            and s.create_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null">
+            and s.create_time &lt;= #{endTime}
+        </if>
+        ) t1
+        WHERE t1.roomCount > 0
+        <if test="shops.minPrice != null">
+            and t1.minMoney &gt;= #{shops.minPrice}
+        </if>
+        <if test="shops.maxPrice != null">
+            and t1.minMoney &lt;= #{shops.maxPrice}
+        </if>
+        <choose>
+            <when test="shops.sortType != null and shops.sortType == 2">
+                ORDER BY t1.distance IS NULL, t1.distance ASC, t1.is_recommend DESC, t1.create_time DESC
+            </when>
+            <when test="shops.sortType != null and shops.sortType == 3">
+                ORDER BY t1.orderCount DESC, t1.is_recommend DESC, t1.create_time DESC
+            </when>
+            <when test="shops.sortType != null and shops.sortType == 4">
+                ORDER BY t1.score DESC, t1.create_time DESC
+            </when>
+            <when test="shops.sortType != null and shops.sortType == 5">
+                ORDER BY t1.score ASC, t1.create_time DESC
+            </when>
+            <otherwise>
+                ORDER BY t1.is_recommend DESC, t1.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getStaffShop" resultType="com.sqx.app.base.shops.entity.Shops">
+        SELECT s.*
+        FROM shops s,
+             `shops_user_role` r
+        WHERE s.`shop_id` = r.`shop_id`
+          AND r.`user_id` = #{userId}
+    </select>
+    <select id="statisticsShop" resultType="java.util.Map">
+        select s.all_money as allMoney,
+        s.cash_money as cashMoney,
+        r.all_user as allUser,
+        o.today_money as todayMoney,
+        m.month_money as monthMoney
+        from shops s
+        left join (select shop_id,count(user_id) as all_user from shops_user_role where shop_id = #{shopId} GROUP BY shop_id) r on r.`shop_id` = s.`shop_id`
+        left join (select shop_id,ifnull(sum(shop_money),0) as today_money
+                   from orders
+                   where shop_id = #{shopId}
+                   and order_status = 3 and create_time >= CURDATE()
+                   and create_time &lt; CURDATE() + INTERVAL 1 DAY) o on o.`shop_id` = s.`shop_id`
+        left join (
+        select shop_id,ifnull(sum(shop_money), 0) as month_money
+        from orders
+        where shop_id = #{shopId}
+        and order_status = 3
+        and create_time >= DATE_FORMAT(CURDATE(), '%Y-%m-01')
+        and create_time &lt; DATE_FORMAT(CURDATE(), '%Y-%m-01') + INTERVAL 1 MONTH
+        ) m on m.shop_id = s.shop_id
+        where s.`shop_id` = #{shopId}
+    </select>
+    <select id="statisticsShop1" resultType="java.util.Map">
+        select s.all_money as allMoney,
+               s.cash_money as cashMoney,
+               r.all_user as allUser,
+               o.today_money as todayMoney,
+               m.month_money as monthMoney
+        from shops s
+                 left join (select shop_id,count(user_id) as all_user from shops_user_role where shop_id = #{shopId} GROUP BY shop_id) r on r.`shop_id` = s.`shop_id`
+                 left join (select shop_id,ifnull(sum(pay_money),0) as today_money
+                            from orders
+                            where shop_id = #{shopId}
+                              and order_status = 3 and create_time >= CURDATE()
+                              and create_time &lt; CURDATE() + INTERVAL 1 DAY) o on o.`shop_id` = s.`shop_id`
+                 left join (
+            select shop_id,ifnull(sum(pay_money), 0) as month_money
+            from orders
+            where shop_id = #{shopId}
+              and order_status = 3
+              and create_time >= DATE_FORMAT(CURDATE(), '%Y-%m-01')
+              and create_time &lt; DATE_FORMAT(CURDATE(), '%Y-%m-01') + INTERVAL 1 MONTH
+        ) m on m.shop_id = s.shop_id
+        where s.`shop_id` = #{shopId}
+    </select>
+    <select id="statisticsShopOrder" resultType="java.util.Map">
+        SELECT
+            COUNT(CASE WHEN order_status = 1 THEN 1 END) AS pendingVerifyCount,
+            COUNT(CASE WHEN order_status = 3 THEN 1 END) AS completedCount,
+            COUNT(CASE WHEN order_status = 4 THEN 1 END) AS refundedCount
+        FROM orders
+        WHERE shop_id = #{shopId}
+    </select>
+
+    <select id="statisticsShopOrder1" resultType="java.util.Map">
+        SELECT
+            COUNT(CASE WHEN order_status = 1 THEN 1 END) AS pendingVerifyCount,
+            COUNT(CASE WHEN order_status = 3 THEN 1 END) AS completedCount,
+            COUNT(CASE WHEN order_status = 4 THEN 1 END) AS refundedCount
+        FROM orders
+        WHERE shop_id = #{shopId}
+    </select>
+    <select id="statisticsShopRoom" resultType="java.util.Map">
+        SELECT
+            SUM(CASE WHEN is_enable = 1 THEN room_count ELSE 0 END) AS enabledCount,
+            SUM(CASE WHEN is_enable = 0 THEN room_count ELSE 0 END) AS disabledCount
+        FROM shops_room
+        WHERE shop_id = #{shopId}
+    </select>
+
+    <select id="statisticsShopRoom1" resultType="java.util.Map">
+        SELECT
+            SUM(CASE WHEN is_enable = 1 THEN room_count ELSE 0 END) AS enabledCount,
+            SUM(CASE WHEN is_enable = 0 THEN room_count ELSE 0 END) AS disabledCount
+        FROM shops_room
+        WHERE shop_id = #{shopId}
+    </select>
+    <select id="selectPages" resultType="com.sqx.app.base.shops.entity.Shops">
+        select s.*,u.user_name as userName
+        from shops s
+        left join tb_user u on s.user_id = u.user_id
+        <where>
+            <if test="shops.shopName != null and shops.shopName != ''">
+                and s.shop_name like concat('%', #{shops.shopName}, '%')
+            </if>
+            <if test="shops.city != null and shops.city != ''">
+                and s.city like concat('%', #{shops.city}, '%')
+            </if>
+            <if test="shops.isRecommend != null">
+                and s.is_recommend = #{shops.isRecommend}
+            </if>
+            <if test="shops.auditStatus != null">
+                and s.audit_status = #{shops.auditStatus}
+            </if>
+            <if test="shops.shopType != null">
+                and s.shop_type = #{shops.shopType}
+            </if>
+            <if test="shops.userName != null and shops.userName != ''">
+                and u.user_name like concat ('%',#{shops.userName},'%')
+            </if>
+            <if test="shops.shopPhone != null and shops.shopPhone != ''">
+                and s.shop_phone like concat ('%',#{shops.shopPhone},'%')
+            </if>
+        </where>
+        order by s.create_time desc
+    </select>
+
+</mapper>

@@ -1,0 +1,18 @@
+$theme-color: #0096FF;
+$default-back: #F5F7FF;
+
+@mixin mul-ellipsis($row) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $row;
+  /* 定义显示的行数 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin grid-layout($col, $colGap, $rowGap: 0rpx) {
+  display: grid;
+  grid-template-columns: repeat($col, 1fr);
+  grid-column-gap: $colGap;
+  grid-row-gap: $rowGap;
+}

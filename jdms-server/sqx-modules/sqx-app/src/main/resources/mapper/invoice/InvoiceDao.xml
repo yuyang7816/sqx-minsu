@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqx.app.base.invoice.mapper.InvoiceDao">
+
+    <select id="pageInfo" resultType="com.sqx.app.base.invoice.domain.vo.InvoiceVo">
+        SELECT
+            ii.*,
+            u.user_name,
+            u.avatar
+        FROM
+            invoice ii
+        LEFT JOIN tb_user u ON ii.user_id = u.user_id
+        <where>
+            <if test="param.userId != null">
+                and ii.user_id = #{param.userId}
+            </if>
+            <if test="param.userName != null and param.userName != ''">
+                and u.user_name like concat('%', #{param.userName} ,'%')
+            </if>
+            <if test="param.type != null">
+                and ii.type = #{param.type}
+            </if>
+            <if test="param.creditCode != null and param.creditCode != ''">
+                and ii.credit_code like concat('%', #{param.creditCode} ,'%')
+            </if>
+            <if test="param.address != null and param.address != ''">
+                and ii.address like concat('%', #{param.address} ,'%')
+            </if>
+            <if test="param.phone != null and param.phone != ''">
+                and ii.phone like concat('%', #{param.phone} ,'%')
+            </if>
+            <if test="param.openBank != null and param.openBank != ''">
+                and ii.open_bank like concat('%', #{param.openBank} ,'%')
+            </if>
+            <if test="param.bankNumber != null and param.bankNumber != ''">
+                and ii.bank_number like concat('%', #{param.bankNumber} ,'%')
+            </if>
+            <if test="param.receiveEmail != null and param.receiveEmail != ''">
+                and ii.receive_email like concat('%', #{param.receiveEmail} ,'%')
+            </if>
+            <if test="param.receivePhone != null and param.receivePhone != ''">
+                and ii.receive_phone like concat('%', #{param.receivePhone} ,'%')
+            </if>
+        </where>
+        ORDER BY ii.create_time DESC
+    </select>
+</mapper>

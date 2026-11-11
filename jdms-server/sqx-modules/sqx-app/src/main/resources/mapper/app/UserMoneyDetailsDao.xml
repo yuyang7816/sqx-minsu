@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sqx.app.base.userMoneyDetails.dao.UserMoneyDetailsDao">
+    <select id="monthIncome" resultType="Double">
+        select sum(money)
+        from user_money_details
+        where user_id = #{userId}
+          and classify = 4
+          and type = 2
+          and state = 2
+          and date_format(create_time, '%Y-%m') = date_format(#{date}, '%Y-%m')
+    </select>
+
+    <select id="selectMoneyDetails" resultType="com.sqx.app.base.userMoneyDetails.entity.UserMoneyDetails">
+        select *
+        from user_money_details
+        where user_id = #{userId}
+          and type = 2
+    </select>
+    <select id="getAgentRanking" resultType="java.util.HashMap">
+        SELECT u.user_id,
+               u.avatar,
+               u.nick_name,
+               IF(u.divide_scale = 0 || u.divide_two_scale = 0, 0, 1) AS isAgent,
+               SUM(money - IFNULL((SELECT SUM(money)FROM user_money_details md WHERE md.relation_id = d.relation_id AND md.classify = 5),0))AS money
+        FROM user_money_details d,
+             tb_user u
+        WHERE u.user_id = d.user_id
+          AND classify = 2
+        GROUP BY user_id
+        ORDER BY money DESC
+    </select>
+    <select id="getOneProfit" resultType="java.math.BigDecimal">
+        SELECT
+        IFNULL(SUM(money), 0)
+        FROM
+        user_money_details
+        WHERE user_id = #{userId}
+        <if test="level!=null">
+            AND user_level =#{level}
+        </if>
+    </select>
+    <select id="getProfitList" resultType="java.util.HashMap">
+        SELECT u.user_id as userId,
+               u.avatar,
+               u.user_name as userName,
+               SUM(money) AS money
+        FROM user_money_details d,
+             tb_user u
+        WHERE d.relation_id = u.user_id
+          AND d.user_id = #{userId}
+          AND d.user_level =#{type}
+        GROUP BY d.relation_id
+        ORDER BY money DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sqx.app.base.user.dao.UserDao">
+
+
+    <select id="selectUserPage" resultType="com.sqx.app.base.user.entity.UserEntity">
+        select * from tb_user
+        where 1=1
+        <if test="search!=null and search!=''">
+            and phone like concat('%',#{search},'%')
+        </if>
+        <if test="userName!=null and userName!=''">
+            and user_name like concat('%',#{userName},'%')
+        </if>
+        <if test="sex!=null and sex!=0">
+            and sex=#{sex}
+        </if>
+        <if test="isAgent!=null and isAgent==1">
+            and divide_scale != 0
+        </if>
+        <if test="platform!=null and platform!=''">
+            and platform=#{platform}
+        </if>
+        <if test="sysPhone!=null and sysPhone!=''">
+            and sys_phone=#{sysPhone}
+        </if>
+        <if test="status!=null and status!=0">
+            and status=#{status}
+        </if>
+        order by create_time desc
+    </select>
+    <select id="queryInviterCount" resultType="int">
+        select count(*)
+        from tb_user
+        where inviter_code = #{inviterCode}
+    </select>
+    <select id="queryUserCount" resultType="int">
+        select count(*)from tb_user where 1=1
+        <if test="type==1">
+            and date_format(create_time,'%Y-%m-%d')=date_format(#{date},'%Y-%m-%d')
+        </if>
+        <if test="type==2">
+            and date_format(create_time,'%Y-%m')=date_format(#{date},'%Y-%m')
+        </if>
+        <if test="type==3">
+            and date_format(create_time,'%Y')=date_format(#{date},'%Y')
+        </if>
+
+    </select>
+    <select id="queryPayMoney" resultType="Double">
+        select sum(money) from pay_details where `state`=1
+        <if test="type==1">
+            and date_format(create_time,'%Y-%m-%d')=date_format(#{date},'%Y-%m-%d')
+        </if>
+        <if test="type==2">
+            and date_format(create_time,'%Y-%m')=date_format(#{date},'%Y-%m')
+        </if>
+        <if test="type==3">
+            and date_format(create_time,'%Y')=date_format(#{date},'%Y')
+        </if>
+    </select>
+
+    <select id="queryCourseOrder" resultType="com.sqx.app.base.user.response.CourseOrderResponse">
+        select * from (
+        select c.course_id as courseId,sum(o.pay_money) as 'coursemoney' ,count(*) as 'coursenum',any_value(c.title) as
+        'coursename' from orders o , course c where o.course_id=c.course_id and o.status=1 and o.orders_type=1
+        <if test="type==1">
+            and date_format(o.create_time,'%Y-%m-%d')=date_format(#{date},'%Y-%m-%d')
+        </if>
+        <if test="type==2">
+            and date_format(o.create_time,'%Y-%m')=date_format(#{date},'%Y-%m')
+        </if>
+        <if test="type==3">
+            and date_format(o.create_time,'%Y')=date_format(#{date},'%Y')
+        </if>
+        group by c.course_id
+        ) a
+        order by a.coursenum desc
+    </select>
+    <select id="userMessage" resultType="int">
+        select count(*) from tb_user  where is_vip=1
+        <if test="type==1">
+            and date_format(create_time,'%Y-%m-%d')=date_format(#{date},'%Y-%m-%d')
+        </if>
+        <if test="type==2">
+            and date_format(create_time,'%Y-%m')=date_format(#{date},'%Y-%m')
+        </if>
+        <if test="type==3">
+            and date_format(create_time,'%Y')=date_format(#{date},'%Y')
+        </if>
+    </select>
+
+    <select id="selectNewUserTrend" resultType="java.util.HashMap">
+        SELECT
+            DATE_FORMAT(create_time, '%Y-%m-%d') AS date,
+            COUNT(*) AS newUserCount
+        FROM tb_user
+        WHERE DATE_FORMAT(create_time, '%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+        GROUP BY DATE_FORMAT(create_time, '%Y-%m-%d')
+        ORDER BY DATE_FORMAT(create_time, '%Y-%m-%d')
+    </select>
+
+
+    <update id="updateCashDeposit">
+        update tb_user
+        set cash_deposit = cash_deposit + #{cashDeposit}
+        where user_id = #{userId}
+    </update>
+
+    <update id="updateMoney">
+        update user_money set
+        <if test="type==1">
+            money = money+#{money}
+        </if>
+        <if test="type==2">
+            money = money-#{money}
+        </if>
+        where user_id = #{userId}
+    </update>
+
+    <update id="deleteCertification">
+        update tb_user
+        set cash_deposit=0.00,
+            user_name=null,
+            identity_card_front=null,
+            identity_card_number=null,
+            identity_card_verso=null,
+            check_certification=null,
+            check_certification_message=null,
+            audit_time=null
+        where user_id = #{userId}
+    </update>
+    <select id="selectRiderUserByOnLineFlag" resultType="com.sqx.app.base.user.entity.UserEntity">
+        select *
+        from (select (st_distance(point(r.lng, r.lat), point(#{lng}, #{lat})) * 111195) as distance, t.*
+              from rider_location r
+                       left join tb_user t on t.user_id = r.user_id
+              where t.user_type = 2
+                and t.on_line_flag = 1
+             ) a
+        where distance &lt;= #{distance}
+    </select>
+    <select id="getNearByRider" resultType="com.sqx.app.base.user.entity.UserEntity">
+        SELECT *
+        FROM (SELECT u.*,
+                     (st_distance(POINT(r.lng, r.lat), POINT(#{lng}, #{lat})) * 111195) AS distance,
+                     (select count(0)
+                      from sys_indent s
+                      where s.rider_user_id = u.user_id
+                        and s.indent_state in (0, 1, 2))                                as indentCount
+              FROM tb_user u,
+                   rider_location r
+              WHERE u.user_id = r.user_id
+                and u.on_line_flag = 1
+                and u.status = 1) AS t1
+        where t1.distance &lt;= #{range} * 1000
+
+    </select>
+    <select id="getUserList" resultType="com.sqx.app.base.user.entity.UserEntity">
+        select u.* from tb_user u,shops_user_role r
+        <where>
+            r.shop_id = #{shopId} and u.user_id= r.user_id
+            <if test="userEntity.userName!=null and userEntity.userName!=''">
+                and u.user_name like concat("%",#{userEntity.userName},"%")
+            </if>
+            <if test="userEntity.phone!=null and userEntity.phone!=''">
+                and u.phone like concat("%",#{userEntity.phone},"%")
+            </if>
+        </where>
+        order by r.create_time desc
+    </select>
+    <select id="getAuthExtensionList" resultType="com.sqx.app.base.user.entity.UserEntity">
+        select u.*
+        from tb_user u
+        where u.inviter_code=#{invitationCode}
+        order by u.create_time desc
+    </select>
+    <select id="getUserIncomeList" resultType="java.util.HashMap">
+        select u.user_name as userName,
+        u.avatar as avatar,
+        u.user_id as userId,
+        (SELECT IFNULL(SUM(money),0) FROM `user_money_details` m WHERE m.relation_id = u.user_id
+        <if test="type==1">
+            AND m.user_level = 1
+        </if>
+        <if test="type==2">
+            AND m.user_level = 2
+        </if>
+        )AS money
+        FROM
+        tb_user u,
+        tb_user ua
+        WHERE 1 = 1
+        <if test="type==1">
+            and u.inviter_code = ua.invitation_code
+        </if>
+        <if test="type==2">
+            and u.inviter_inviter_code = ua.invitation_code
+        </if>
+        and ua.user_id = #{userId}
+        order by money desc
+    </select>
+</mapper>
